@@ -10,4 +10,7 @@ class ClothingItem < ApplicationRecord
   has_many :outfit_clothing_items
   has_many :outfits, through: :outfit_clothing_items
 
+  has_many :user_clothing_items
+  has_many :users, through: :user_clothing_items
+
 end
