@@ -7,4 +7,7 @@ class ClothingItem < ApplicationRecord
 
   belongs_to :category
 
+  has_many :outfit_clothing_items
+  has_many :outfits, through: :outfit_clothing_items
+
 end
