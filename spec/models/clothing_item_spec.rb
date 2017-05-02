@@ -62,13 +62,21 @@ RSpec.describe ClothingItem, type: :model do
     end
 
     it 'has many outfits' do
+      first_outfit = Outfit.create
+      first_outfit.clothing_items << valid_item
+      second_outfit = Outfit.create
+      second_outfit.clothing_items << valid_item
+
       expect(valid_item.outfits.size).to eq(2)
-      #this test needs to be fleshed out
     end
 
     it 'has many users' do
+      first_user = User.find_or_create_by(email: "r@r.r")
+      first_user.clothing_items << valid_item
+      second_user = User.find_or_create_by(email: "a@a.a")
+      second_user.clothing_items << valid_item
+
       expect(valid_item.users.size).to eq(2)
-      #this test needs to be fleshed out
     end
 
   end
