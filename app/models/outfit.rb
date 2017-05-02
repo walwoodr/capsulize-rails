@@ -4,4 +4,5 @@ class Outfit < ApplicationRecord
   belongs_to :user
 
   validates :user, presence: true
+  validates :clothing_items, :length => { :minimum => 2 }
 end
