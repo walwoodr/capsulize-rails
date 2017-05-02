@@ -4,7 +4,7 @@ class CreateClothingItems < ActiveRecord::Migration[5.0]
       t.string :name
       t.integer :category_id
       t.string :color
-      t.integer :fanciness
+      t.integer :fanciness, default: 3
 
       t.timestamps
     end

@@ -23,9 +23,9 @@ ActiveRecord::Schema.define(version: 20170502204859) do
     t.string   "name"
     t.integer  "category_id"
     t.string   "color"
-    t.integer  "fanciness"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "fanciness",   default: 3
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "outfit_clothing_items", force: :cascade do |t|
