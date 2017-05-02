@@ -29,7 +29,11 @@ RSpec.describe Category, type: :model do
   end
 
   it 'has many clothing items' do
-    expect(Category.new(attributes).clothing_items.size).not_to be(nil)
+    pants = Category.create(attributes)
+    pants.clothing_items.create
+    pants.clothing_items.create
+
+    expect(pants.clothing_items.size).to eq(2)
   end
 
   it 'has a name' do
