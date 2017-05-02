@@ -61,6 +61,16 @@ RSpec.describe ClothingItem, type: :model do
       expect(valid_item.category).to eq(pants)
     end
 
+    it 'has many outfits' do
+      expect(valid_item.outfits.size).to eq(2)
+      #this test needs to be fleshed out
+    end
+
+    it 'has many users' do
+      expect(valid_item.users.size).to eq(2)
+      #this test needs to be fleshed out
+    end
+
   end
 
   # TODO - add spec for enum for fanciness
