@@ -62,12 +62,11 @@ RSpec.describe ClothingItem, type: :model do
     end
 
     it 'has many outfits' do
-      first_outfit = Outfit.create
-      first_outfit.clothing_items << valid_item
-      second_outfit = Outfit.create
-      second_outfit.clothing_items << valid_item
+      new_item = ClothingItem.create(name: "Asymetric crop top", color: "blue", fanciness: 5, category: Category.find_by(name: 'shirt'))
+      Outfit.create(clothing_items: [new_item, ClothingItem.find(3)], user_id: 1)
+      Outfit.create(clothing_items: [new_item, ClothingItem.find(8)], user_id: 1)
 
-      expect(valid_item.outfits.size).to eq(2)
+      expect(new_item.outfits.size).to eq(2)
     end
 
     it 'has many users' do
