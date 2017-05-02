@@ -63,4 +63,6 @@ RSpec.describe ClothingItem, type: :model do
 
   end
 
+  # TODO - add spec for enum for fanciness
+
 end

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :users
   resources :outfits
   resources :categories
   resources :clothing_items
