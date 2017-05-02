@@ -3,10 +3,16 @@ require 'rails_helper'
 RSpec.describe Outfit, type: :model do
 
   describe 'validations' do
-    it 'is valid with a name and two or more clothing items' do
-      outfit = Outfit.new(name: "Fave outfit", clothing_item_ids: [3, 4])
+    it 'is valid with a user, name and two or more clothing items' do
+      outfit = Outfit.new(name: "Fave outfit", clothing_item_ids: [3, 4], user_id: 1)
 
       expect(outfit).to be_valid
+    end
+
+    it 'is invalid without a user' do
+      outfit = Outfit.new(name: "Fave outfit", clothing_item_ids: [3, 4])
+
+      expect(outfit).not_to be_valid
     end
 
     it 'is valid with items that belong to the user' do
