@@ -18,7 +18,31 @@ RSpec.describe Outfit, type: :model do
   end
 
   describe 'associations' do
-    # TODO add specs
+
+      it 'belongs to a user' do
+        user = User.first
+        outfit = user.outfits.build(clothing_items: [user.clothing_items.first, user.clothing_items.last])
+
+        expect(outfit.user).to eq(user)
+      end
+
+      it 'has many clothing items' do
+        outfit = Outfit.new(name: "Fave outfit", clothing_item_ids: [3, 4])
+        outfit2 = Outfit.new(name: "Fave outfit", clothing_item_ids: [1, 8, 5])
+        outfit3 = Outfit.new(name: "Fave outfit", clothing_item_ids: [10, 15, 1, 2])
+
+        expect(outfit.clothing_items.size).to eq(2)
+        expect(outfit2.clothing_items.size).to eq(3)
+        expect(outfit3.clothing_items.size).to eq(4)
+      end
+
+      it 'knows about its clothing objects' do
+        outfit = Outfit.new(name: "Fave outfit", clothing_item_ids: [3, 4])
+
+        expect(outfit.clothing_items.first.name).to eq(ClothingItem.find(3).name)
+        expect(outfit.clothing_items.last.color).to eq(ClothingItem.find(4).color)
+        expect(outfit.clothing_items.size).to eq(2)
+      end
   end
 
   describe 'class methods' do
