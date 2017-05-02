@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :categories
   resources :clothing_items
   resources :users
   root to: 'outfits#index'
