@@ -1,0 +1,2 @@
+class UserClothingItem < ApplicationRecord
+end
