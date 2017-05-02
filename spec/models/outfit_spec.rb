@@ -9,6 +9,14 @@ RSpec.describe Outfit, type: :model do
       expect(outfit).to be_valid
     end
 
+    it 'is invalid without two or more clothing items' do
+      outfit1 = Outfit.new(name: "Fave outfit", clothing_item_ids: [3], user_id: 1)
+      outfit2 = Outfit.new(name: "Fave outfit", user_id: 1)
+
+      expect(outfit1).not_to be_valid
+      expect(outfit2).not_to be_valid
+    end
+
     it 'is invalid without a user' do
       outfit = Outfit.new(name: "Fave outfit", clothing_item_ids: [3, 4])
 
