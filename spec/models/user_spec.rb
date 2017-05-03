@@ -8,8 +8,29 @@ RSpec.describe User, type: :model do
   let(:outfit_attributes) { {name: "Night on the town"} }
   let(:outfit_attributes_2) { {name: ""} }
 
+
+  describe 'validations' do
   # authentication and validation through Devise.
   # TODO Devise features should ideally have specs
+    it 'is valid with a first and last name' do
+      user = build(:user)
+
+      expect(user).to be_valid
+    end
+
+    it 'is invalid without a first name' do
+      user = User.new(email: "test@test.com", last_name: "Moony")
+
+      expect(user).not_to be_valid
+    end
+
+    it 'is invalid without a last name' do
+      user = User.new(email: "test@test.com", first_name: "Moony")
+
+      expect(user).not_to be_valid
+    end
+  end
+
 
   describe 'associations' do
 
