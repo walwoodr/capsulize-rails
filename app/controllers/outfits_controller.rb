@@ -3,18 +3,18 @@ class OutfitsController < ApplicationController
   before_action :find_outfit, only: [:show, :edit, :update, :destroy]
 
   def index
-    @outfits = # all outfits of user
+    # @outfits = # all outfits of user
   end
 
   def show
   end
 
   def new
-    @outfit = # new outfit with user
+    # @outfit = # new outfit with user
   end
 
   def create
-    @outfit = # new outfit with user
+    # @outfit = # new outfit with user
   end
 
   def edit

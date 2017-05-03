@@ -70,9 +70,9 @@ RSpec.describe ClothingItem, type: :model do
     end
 
     it 'has many users' do
-      first_user = User.find_or_create_by(email: "r@r.r")
+      first_user = create(:user)
       first_user.clothing_items << valid_item
-      second_user = User.find_or_create_by(email: "a@a.a")
+      second_user = create(:user_2)
       second_user.clothing_items << valid_item
 
       expect(valid_item.users.size).to eq(2)
