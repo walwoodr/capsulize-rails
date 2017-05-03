@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user) { User.find_or_create_by(email: "r@r.r") }
+  let(:test_user) { create(:user) }
   let(:pants) { Category.new(name: "pants", part_of_body: "legs") }
   let(:clothing_attributes) { {name: "Jeans", color: "blue", fanciness: 2, category: pants} }
   let(:clothing_attributes_2) { {name: "Khakis", color: "brown", fanciness: 1, category: pants} }
@@ -13,9 +13,7 @@ RSpec.describe User, type: :model do
   # authentication and validation through Devise.
   # TODO Devise features should ideally have specs
     it 'is valid with a first and last name' do
-      user = build(:user)
-
-      expect(user).to be_valid
+      expect(test_user).to be_valid
     end
 
     it 'is invalid without a first name' do
@@ -35,17 +33,17 @@ RSpec.describe User, type: :model do
   describe 'associations' do
 
     it 'has many clothing items' do
-      user.clothing_items.create(clothing_attributes)
-      user.clothing_items.create(clothing_attributes_2)
+      test_user.clothing_items.create(clothing_attributes)
+      test_user.clothing_items.create(clothing_attributes_2)
 
-      expect(user.clothing_items.size).to eq(2)
+      expect(test_user.clothing_items.size).to eq(2)
     end
 
     it 'has many outfits' do
-      user.outfits.create(outfit_attributes)
-      user.outfits.create(outfit_attributes_2)
+      test_user.outfits.create(outfit_attributes)
+      test_user.outfits.create(outfit_attributes_2)
 
-      expect(user.outfits.size).to eq(2)
+      expect(test_user.outfits.size).to eq(2)
     end
 
   end

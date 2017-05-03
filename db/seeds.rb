@@ -6,8 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-rachel = User.find_or_create_by(email: 'r@a.a')
-amanda = User.find_or_create_by(email: 'a@a.a')
+rachel = User.create(email: 'r@a.a', first_name: "Rachel", last_name: "Walberg")
+amanda = User.create(email: 'a@a.a', first_name: "Amanda", last_name: "Underwood")
 
 shirt = Category.create(name: "shirt", part_of_body: "torso")
 jacket = Category.create(name: "jacket", part_of_body: "torso")
