@@ -27,14 +27,19 @@ Specs:
 
 - [ ] Include a class level ActiveRecord scope method (model object & class method name and URL to see the working feature e.g. User.most_recipes URL: /users/most_recipes)
 - [ ] Include a nested form writing to an associated model using a custom attribute writer (form URL, model name e.g. /recipe/new, Item)
+
 - [ ] Include signup (how e.g. Devise)
     - Used Devise
+
 - [ ] Include login (how e.g. Devise)
     - Used Devise
+
 - [ ] Include logout (how e.g. Devise)
     - Used Devise
+
 - [ ] Include third party signup/login (how e.g. Devise/OmniAuth)
     - Planning to use Devise OmniAuth gem for Pinterest
+
 - [ ] Include nested resource show or index (URL e.g. users/2/recipes)
 - [ ] Include nested resource "new" form (URL e.g. recipes/1/ingredients)
 - [ ] Include form display of validation errors (form URL e.g. /recipes/new)
