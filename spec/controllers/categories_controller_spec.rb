@@ -3,12 +3,6 @@ require 'rails_helper'
 RSpec.describe CategoriesController, type: :controller do
 
     let (:user) { FactoryGirl.create(:user) }
-    let (:pants) { FactoryGirl.create(:pants)}
-    let (:shirts) { FactoryGirl.create(:shirts)}
-    let (:jeans) { FactoryGirl.create(:jeans, category: pants) }
-    let (:tshirt) { FactoryGirl.create(:tshirt, category: shirts) }
-    let (:outfit) { FactoryGirl.create(:outfit, user: user, clothing_items: [jeans, tshirt]) }
-    let (:user_2) { FactoryGirl.create(:user_2) }
 
     render_views
 
@@ -24,4 +18,18 @@ RSpec.describe CategoriesController, type: :controller do
         is_expected.to render_template :'categories/index'
       end
     end
+
+
+    context 'guest' do
+      xit 'clothing_item path redirects to homepage' do
+        get :index
+
+        is_expected.to redirect_to home_path
+      end
+    end
+
+    context 'admin' do
+      # TODO later
+    end
+    
 end
