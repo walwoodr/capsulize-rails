@@ -5,7 +5,11 @@ class OutfitsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @outfits = @user.outfits
+    if @user
+      @outfits = @user.outfits
+    else
+      redirect_to home_path
+    end
   end
 
   def show
@@ -37,7 +41,7 @@ class OutfitsController < ApplicationController
   def find_user
     if current_user
       @user = current_user
-    else
+    elsif params[:user_id]
       @user = User.find(params[:user_id])
     end
   end
