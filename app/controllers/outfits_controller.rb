@@ -1,20 +1,22 @@
 class OutfitsController < ApplicationController
 
+  before_action :find_user
   before_action :find_outfit, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   def index
-    # @outfits = # all outfits of user
+    @outfits = @user.outfits
   end
 
   def show
   end
 
   def new
-    # @outfit = # new outfit with user
+    @outfit = @user.outfits.build
   end
 
   def create
-    # @outfit = # new outfit with user
+    @outfit = @user.outfits.build
   end
 
   def edit
@@ -29,6 +31,15 @@ class OutfitsController < ApplicationController
   private
 
   def find_outfit
-    @outfit = Outfit.find(params[:id])
+    @outfit = @user.outfits.find(params[:id])
   end
+
+  def find_user
+    if current_user
+      @user = current_user
+    else
+      @user = User.find(params[:user_id])
+    end
+  end
+
 end
