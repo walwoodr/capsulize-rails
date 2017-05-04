@@ -24,7 +24,7 @@ RSpec.describe OutfitsController, type: :controller do
     end
 
     it 'index action renders index template' do
-      get outfits_path
+      get user_outfits_path(user)
 
       is_expected.to respond_with :ok
       is_expected.to render_with_layout :application
@@ -32,7 +32,7 @@ RSpec.describe OutfitsController, type: :controller do
     end
 
     it 'show action renders show template' do
-      get outfit_path(outfit)
+      get user_outfit_path(user, outfit)
 
       is_expected.to respond_with :ok
       is_expected.to render_with_layout :application
@@ -40,7 +40,7 @@ RSpec.describe OutfitsController, type: :controller do
     end
 
     it 'edit action renders edit template' do
-      get edit_outfit_path(outfit)
+      get edit_user_outfit_path(user, outfit)
 
       is_expected.to respond_with :ok
       is_expected.to render_with_layout :application
@@ -48,7 +48,7 @@ RSpec.describe OutfitsController, type: :controller do
     end
 
     it 'edit action renders form partial' do
-      get edit_outfit_path(outfit)
+      get edit_user_outfit_path(user, outfit)
 
       expect(response).to render_template(partial: 'outfits/form')
     end
@@ -62,7 +62,7 @@ RSpec.describe OutfitsController, type: :controller do
     end
 
     it 'new action renders new template' do
-      get new_outfit_path(outfit)
+      get new_user_outfit_path(user, outfit)
 
       is_expected.to respond_with :ok
       is_expected.to render_with_layout :application
@@ -70,7 +70,7 @@ RSpec.describe OutfitsController, type: :controller do
     end
 
     it 'new action renders form partial' do
-      get new_outfit_path(outfit)
+      get new_user_outfit_path(user, outfit)
 
       expect(response).to render_template(partial: 'outfits/form')
     end
@@ -100,10 +100,9 @@ RSpec.describe OutfitsController, type: :controller do
 
   context 'guest' do
     it 'outfits index redirects to homepage' do
-      get outfits_path
+      get root_path
 
-      is_expected.to redirect_to new_session_path
-      is_expected.to set_the_flash(:warning).to('Please log in.')
+      is_expected.to redirect_to home_path
     end
   end
 
