@@ -61,12 +61,12 @@ RSpec.describe 'user logged in', type: :feature do
       expect(page).to have_css('form#outfit')
     end
 
-    it 'displays clothes options by category' do
+    it 'displays clothes options by category' do #duplicated by edit outfit page spec
       expect(page).to have_text(category.name)
       expect(page).to have_css("check_box.#{category.name}.clothing_item", count: category.clothing_items.size)
     end
 
-    it 'allows you to create a new item of clothing with the outfit' do
+    it 'allows you to create a new item of clothing with the outfit' do #duplicated by edit outfit page spec
       expect(page).to have_css('input.clothing_item[name]')
       expect(page).to have_css('input.clothing_item[color]')
     end
@@ -81,7 +81,7 @@ RSpec.describe 'user logged in', type: :feature do
       click_button "Create Outfit"
     end
 
-    let (:outfit_2) { Outfit.find_by(name: "Evening at the Opera")}
+    let (:outfit_2) { user.outfits.find_by(name: "Evening at the Opera")}
 
     it 'creates a new outfit belonging to the user' do
       expect(outfit_2).not_to be_nil
@@ -94,48 +94,87 @@ RSpec.describe 'user logged in', type: :feature do
   end
 
   describe 'outfit modification page' do
-    it 'displays a form to change the existing outfit' do
+    before do
+      visit edit_user_outfit_path(user, outfit)
+    end
 
+    it 'displays a form to change the existing outfit' do
+      expect(page).to have_css('form#outfit')
+      espect(page).to have_css('input', value: outfit.name)
     end
 
     it 'displays a button to delete the outfit' do
-
+      expect(page).to have_link("Delete outfit")
+      expect(page).to have_xpath(:href => user_outfit(user, outfit))
     end
 
-    it 'displays clothes options by category' do
-
+    it 'displays clothes options by category' do #duplicate of new outfit page spec
+      expect(page).to have_text(category.name)
+      expect(page).to have_css("check_box.#{category.name}.clothing_item", count: category.clothing_items.size)
     end
 
-    it 'allows you to create a new item of clothing on the outfit' do
-
+    it 'allows you to create a new item of clothing on the outfit' do #duplicate of new outfit page spec
+      expect(page).to have_css('input.clothing_item[name]')
+      expect(page).to have_css('input.clothing_item[color]')
     end
   end
 
   describe 'modify outfit' do
+    let(:outfit_count) {user.outfits.size}
+    let(:old_name) {outfit.name}
+
+    before do
+      visit edit_user_outfit_path(user, outfit)
+      fill_in "Name", with: "Night on the town - best"
+      # select "black Trousers", from "Pants"
+      # select "White Blouse", from "Shirts"
+      click_button "Edit Outfit"
+    end
+
+    let(:changed_outfit) { user.outfits.find_by(name: "Night on the town - best")}
+
     it 'changes the outfit belonging to the user' do
-      # does not create a new outfit
+      expect(user.outfits.size).to eq(outfit_count)
+      expect(changed_outfit).not_to be_nil
+      expect(user.outfits.find_by(name: old_name)).to be_nil
     end
 
     it 'redirects to view the show outfit page' do
-
+      expect(page).to have_text(changed_outfit.name)
+      expect(page).to have_link("Edit outfit")
+      expect(page).to have_xpath(:href => edit_user_outfit_path(user, outfit))
     end
   end
 
   describe 'outfit deletion' do
-    it 'deletes the outfit' do
+    let(:outfit_count) {user.outfits.size}
+    let(:outfit_name) {outfit.name}
 
+    before do
+      visit edit_user_outfit_path(user, outfit)
+      click_link "Delete outfit"
+    end
+
+    let(:deleted_outfit) { user.outfits.find_by(name: outfit_name)}
+
+    it 'deletes the outfit' do
+      expect(deleted_outfit).to be_nil
+      expect(user.outfits.size).to eq(outfit_count-1)
     end
 
     it 'redirects to the outfit index page' do
-
+      expect(page).to have_text("Your Outfits")
     end
   end
 
 end
 
 describe 'user not logged in' do
+  before do
+    visit user_outfits_path(user)
+  end
 
   it 'renders an error message' do
-
+    expect(page).to have_text("Please log in to look at your outfits.")
   end
 end
