@@ -50,6 +50,7 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'spring-commands-rspec'
   gem 'capybara'
+  gem 'rails-controller-testing'
 end
 
 group :development do

@@ -15,27 +15,15 @@ RSpec.describe OutfitsController, type: :controller do
       login_with(user)
     end
 
-    it 'root renders outfit index' do
-      get root_path
-
-      is_expected.to respond_with :ok
-      is_expected.to render_with_layout :application
-      is_expected.to render_template :'outfits/index'
-    end
-
     it 'index action renders index template' do
-      get user_outfits_path(user)
+      get :index
 
-      is_expected.to respond_with :ok
-      is_expected.to render_with_layout :application
       is_expected.to render_template :'outfits/index'
     end
 
     it 'show action renders show template' do
-      get user_outfit_path(user, outfit)
+      get :show, id: outfit.id, user_id: user.id
 
-      is_expected.to respond_with :ok
-      is_expected.to render_with_layout :application
       is_expected.to render_template :'outfits/show'
     end
 
