@@ -10,6 +10,8 @@ RSpec.describe OutfitsController, type: :controller do
   let (:outfit) { FactoryGirl.create(:outfit, user: user, clothing_items: [jeans, tshirt]) }
   let (:user_2) { FactoryGirl.create(:user_2) }
 
+  render_views
+
   context 'logged in user' do
 
     before do
@@ -23,27 +25,27 @@ RSpec.describe OutfitsController, type: :controller do
     end
 
     it 'index action for other user renders index template' do
-      get :index, user_id: user_2.id
+      get :index, params: { user_id: user_2.id }
 
       is_expected.to render_template :'outfits/index'
     end
 
     it 'show action renders show template' do
-      get :show, id: outfit.id, user_id: user.id
+      get :show, params: { id: outfit.id, user_id: user.id }
 
       is_expected.to render_template :'outfits/show'
     end
 
     it 'edit action renders edit template' do
-      get :edit, id: outfit.id, user_id: user.id
+      get :edit, params: { id: outfit.id, user_id: user.id }
 
       is_expected.to render_template :'outfits/edit'
     end
 
     it 'edit action renders form partial' do
-      get :edit, id: outfit.id, user_id: user.id
+      get :edit, params: { id: outfit.id, user_id: user.id }
 
-      expect(response).to render_template(partial: 'outfits/form')
+      expect(response).to render_template(partial: 'outfits/_form')
     end
 
     xit 'update action redirects to show' do
@@ -55,17 +57,15 @@ RSpec.describe OutfitsController, type: :controller do
     end
 
     it 'new action renders new template' do
-      get :new, user_id: user.id
+      get :new, params: { user_id: user.id }
 
-      is_expected.to respond_with :ok
-      is_expected.to render_with_layout :application
       is_expected.to render_template :'outfits/new'
     end
 
     it 'new action renders form partial' do
-      get :new, user_id: user.id
+      get :new, params: { user_id: user.id }
 
-      expect(response).to render_template(partial: 'outfits/form')
+      expect(response).to render_template(partial: 'outfits/_form')
     end
 
     xit 'create action redirects to show' do
@@ -93,7 +93,7 @@ RSpec.describe OutfitsController, type: :controller do
 
   context 'guest' do
     xit 'outfits path redirects to homepage' do
-      get :index, user_id: user.id
+      get :index, params: { user_id: user.id }
 
       is_expected.to redirect_to home_path
     end
