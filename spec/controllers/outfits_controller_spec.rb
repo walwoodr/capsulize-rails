@@ -8,6 +8,7 @@ RSpec.describe OutfitsController, type: :controller do
   let (:jeans) { FactoryGirl.create(:jeans, category: pants) }
   let (:tshirt) { FactoryGirl.create(:tshirt, category: shirts) }
   let (:outfit) { FactoryGirl.create(:outfit, user: user, clothing_items: [jeans, tshirt]) }
+  let (:user_2) { FactoryGirl.create(:user_2) }
 
   context 'logged in user' do
 
@@ -15,8 +16,14 @@ RSpec.describe OutfitsController, type: :controller do
       login_with(user)
     end
 
-    it 'index action renders index template' do
+    it 'index action renders index template for current user' do
       get :index
+
+      is_expected.to render_template :'outfits/index'
+    end
+
+    it 'index action for other user renders index template' do
+      get :index, user_id: user_2.id
 
       is_expected.to render_template :'outfits/index'
     end
@@ -28,15 +35,13 @@ RSpec.describe OutfitsController, type: :controller do
     end
 
     it 'edit action renders edit template' do
-      get edit_user_outfit_path(user, outfit)
+      get :edit, id: outfit.id, user_id: user.id
 
-      is_expected.to respond_with :ok
-      is_expected.to render_with_layout :application
       is_expected.to render_template :'outfits/edit'
     end
 
     it 'edit action renders form partial' do
-      get edit_user_outfit_path(user, outfit)
+      get :edit, id: outfit.id, user_id: user.id
 
       expect(response).to render_template(partial: 'outfits/form')
     end
@@ -50,7 +55,7 @@ RSpec.describe OutfitsController, type: :controller do
     end
 
     it 'new action renders new template' do
-      get new_user_outfit_path(user, outfit)
+      get :new, user_id: user.id
 
       is_expected.to respond_with :ok
       is_expected.to render_with_layout :application
@@ -58,7 +63,7 @@ RSpec.describe OutfitsController, type: :controller do
     end
 
     it 'new action renders form partial' do
-      get new_user_outfit_path(user, outfit)
+      get :new, user_id: user.id
 
       expect(response).to render_template(partial: 'outfits/form')
     end
@@ -87,8 +92,8 @@ RSpec.describe OutfitsController, type: :controller do
   end
 
   context 'guest' do
-    it 'outfits index redirects to homepage' do
-      get root_path
+    xit 'outfits path redirects to homepage' do
+      get :index, user_id: user.id
 
       is_expected.to redirect_to home_path
     end
