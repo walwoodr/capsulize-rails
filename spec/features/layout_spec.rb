@@ -29,12 +29,9 @@ RSpec.feature "Layout", type: :feature do
 
     it 'displays logged out navigation' do
       visit root_path
-      
+
       expect(page).to have_text("Log In")
       expect(page).to have_text("Sign Up")
-      # home
-      # sign up link
-      # sign in link
     end
   end
 
