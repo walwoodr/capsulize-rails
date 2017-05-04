@@ -22,10 +22,10 @@ RSpec.describe User, type: :model do
       expect(user).not_to be_valid
     end
 
-    it 'is invalid without a last name' do
+    it 'is valid without a last name' do
       user = User.new(email: "test@test.com", first_name: "Moony")
 
-      expect(user).not_to be_valid
+      expect(user).to be_valid
     end
   end
 
