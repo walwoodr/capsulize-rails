@@ -1,0 +1,11 @@
+<h1><%= @outfit.name %></h1>
+
+
+<ul>
+  <% @outfit.clothing_items.each do |clothing_item| %>
+    <li><%= clothing_item.name %> | <%= clothing_item.color %> | <%= word_fanciness(clothing_item) %></li>
+  <% end %>
+</ul>
+
+<%= link_to "Edit outfit", edit_user_outfit_path(@outfit.user, @outfit), class: "edit-outfit" %>
+</div>

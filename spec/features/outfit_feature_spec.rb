@@ -26,9 +26,8 @@ RSpec.describe 'user logged in', type: :feature do
     end
 
     it 'displays a link to create a new outfit' do
-      expect(page).to have_link("New Outfit")
+      expect(page).to have_link("New Outfit", {href: new_user_outfit_path(user)})
       expect(page).to have_css('a#new-outfit')
-      expect(page).to have_xpath(:href => new_user_outfit_path)
     end
   end
 
@@ -42,13 +41,11 @@ RSpec.describe 'user logged in', type: :feature do
     end
 
     it 'displays a link to edit the outfit' do
-      expect(page).to have_link("Edit outfit")
-      expect(page).to have_xpath(:href => edit_user_outfit_path(user, outfit))
+      expect(page).to have_link("Edit outfit", {href: edit_user_outfit_path(user, outfit)})
     end
 
     xit 'displays a link to riff on the outfit (duplicate & modify)' do
-      expect(page).to have_link("Riff off the outfit")
-      expect(page).to have_xpath(:href => new_by_duplicate_user_outfit_path(user, outfit))
+      expect(page).to have_link("Riff off the outfit", {href: new_by_duplicate_user_outfit_path(user, outfit)})
     end
   end
 
@@ -104,8 +101,7 @@ RSpec.describe 'user logged in', type: :feature do
     end
 
     it 'displays a button to delete the outfit' do
-      expect(page).to have_link("Delete outfit")
-      expect(page).to have_xpath(:href => user_outfit(user, outfit))
+      expect(page).to have_link("Delete outfit", {href: user_outfit(user, outfit)})
     end
 
     it 'displays clothes options by category' do #duplicate of new outfit page spec
@@ -141,8 +137,7 @@ RSpec.describe 'user logged in', type: :feature do
 
     it 'redirects to view the show outfit page' do
       expect(page).to have_text(changed_outfit.name)
-      expect(page).to have_link("Edit outfit")
-      expect(page).to have_xpath(:href => edit_user_outfit_path(user, outfit))
+      expect(page).to have_link("Edit outfit", {href: edit_user_outfit_path(user, outfit)})
     end
   end
 

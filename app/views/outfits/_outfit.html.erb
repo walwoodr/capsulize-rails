@@ -6,4 +6,6 @@
       <li><%= clothing_item.name %> | <%= clothing_item.color %> | <%= word_fanciness(clothing_item) %></li>
     <% end %>
   </ul>
+
+  <%= link_to "Details", user_outfit_path(outfit.user, outfit), class: "details-outfit" %>
 </div>
