@@ -11,5 +11,11 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe ClothingItemsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  xit 'renders fanciness level as words' do
+    # scruffy
+    # comfy
+    # nice
+    # spiffy
+    # fancy
+  end
 end
