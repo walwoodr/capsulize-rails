@@ -1,7 +1,7 @@
     <%= f.label :name %> <br>
     <%= f.text_field :name %> <br>
     <%= f.label :category %> <br>
-    <%= f.collection_select :category_id, Category.all, :id, :name %> <br>
+    <%= f.collection_select :category_id, Category.all, :id, :name, include_blank: true %> <br>
     <%= f.label :color %> <br>
     <%= f.text_field :color %> <br>
     <%= f.label :fanciness %> <span class="infotext">1-5</span><br>

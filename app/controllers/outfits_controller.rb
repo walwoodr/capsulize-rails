@@ -22,7 +22,7 @@ class OutfitsController < ApplicationController
   end
 
   def create
-    raise params.inspect
+    raise outfit_params.inspect
     @outfit = @user.outfits.build
   end
 
@@ -49,6 +49,10 @@ class OutfitsController < ApplicationController
     elsif current_user
       @user = current_user
     end
+  end
+
+  def outfit_params
+    params.require(:outfit).permit(:user_id, :name, :clothing_item_ids => [], :clothing_item => [:name, :category_id, :color, :fanciness])
   end
 
 end
