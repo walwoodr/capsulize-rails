@@ -28,6 +28,7 @@ class OutfitsController < ApplicationController
 
   def edit
     @categories = Category.all
+    @clothing_item = @user.clothing_items.build
   end
 
   def update
