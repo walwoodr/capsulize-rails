@@ -97,12 +97,12 @@ RSpec.describe 'user logged in', type: :feature do
     end
 
     it 'displays a form to change the existing outfit' do
-      expect(page).to have_css('form#edit_outfit')
-      espect(page).to have_css('input', value: outfit.name)
+      expect(page).to have_css('form.edit_outfit')
+      expect(page).to have_selector("input[value='Night on the town']")
     end
 
     it 'displays a button to delete the outfit' do
-      expect(page).to have_link("Delete outfit", {href: user_outfit(user, outfit)})
+      expect(page).to have_link("Delete outfit", {href: user_outfit_path(user, outfit)})
     end
 
     it 'displays clothes options by category' do #duplicate of new outfit page spec
