@@ -55,7 +55,7 @@ RSpec.describe 'user logged in', type: :feature do
     end
 
     it 'displays a form to create a new outfit' do
-      expect(page).to have_css('form#outfit')
+      expect(page).to have_css('form#new_outfit')
     end
 
     it 'displays clothes options by category' do #duplicated by edit outfit page spec
@@ -96,7 +96,7 @@ RSpec.describe 'user logged in', type: :feature do
     end
 
     it 'displays a form to change the existing outfit' do
-      expect(page).to have_css('form#outfit')
+      expect(page).to have_css('form#edit_outfit')
       espect(page).to have_css('input', value: outfit.name)
     end
 

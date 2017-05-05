@@ -1,0 +1,15 @@
+<%= form_for [@outfit.user, @outfit] do |f| %>
+
+  <%= f.hidden_field :user_id %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <!--
+  clothing checkboxes by category
+  including only the clothing items
+  owned by the user who's outfit this is
+  -->
+
+  <%= f.submit %>
+
+<% end %>
