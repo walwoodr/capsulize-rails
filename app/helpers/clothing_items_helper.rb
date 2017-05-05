@@ -14,10 +14,9 @@ module ClothingItemsHelper
       "fancy"
     end
   end
-  # scruffy
-  # comfy
-  # nice
-  # spiffy
-  # fancy
+
+  def attributes_display(clothing_item)
+    "#{clothing_item.name} | #{clothing_item.color} | #{word_fanciness(clothing_item)}"
+  end
 
 end
