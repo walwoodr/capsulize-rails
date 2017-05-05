@@ -22,8 +22,12 @@ class OutfitsController < ApplicationController
   end
 
   def create
-    raise outfit_params.inspect
-    @outfit = @user.outfits.build
+    outfit = @user.outfits.create(outfit_params)
+    if outfit.save
+      redirect_to user_outfit_path(current_user, outfit)
+    else
+      render 'new'
+    end
   end
 
   def edit

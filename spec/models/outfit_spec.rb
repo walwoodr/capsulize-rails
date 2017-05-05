@@ -66,12 +66,14 @@ RSpec.describe Outfit, type: :model do
     end
 
     it 'can accept params for a clothing item and create the item' do
-      outfit = Outfit.create(user_id: 1, name: "Fave outfit", clothing_item_ids: [3, 4])
+      user = User.first
+      outfit = Outfit.create(user: user, name: "Fave outfit", clothing_item_ids: [3, 4])
       category = Category.find_by(name: "shoes")
       gladiators = outfit.clothing_item={name: "Gladiators", color: "grey", category_id: category.id, fanciness: 3}
 
       expect(gladiators).not_to be_nil
       expect(outfit.clothing_items.last.name).to eq(gladiators[:name])
+      expect(user.clothing_items.find_by(name: gladiators[:name])).not_to be_nil
     end
   end
 
