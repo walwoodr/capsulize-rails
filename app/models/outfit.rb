@@ -7,9 +7,11 @@ class Outfit < ApplicationRecord
   validates :clothing_items, :length => { :minimum => 2 }
 
   def clothing_item=(attributes_hash)
-    self.save
-    item = self.clothing_items.build(attributes_hash)
-    item.users << self.user
-    item.save
+    if attributes_hash[:name] != ""
+      item = self.clothing_items.build(attributes_hash)
+      item.users << self.user
+      self.save
+      # raise self.inspect
+    end
   end
 end
