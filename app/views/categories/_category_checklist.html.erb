@@ -3,6 +3,7 @@
   <strong><%= category.name %></strong><br>
 
     <%= f.collection_check_boxes :clothing_item_ids, category.clothing_items.users(current_user).all, :id, :name do |b| %>
+    <!-- TODO: instead of :name above, i'd like to display attributes_display(item) -->
       <div class="clothing-item">
         <%= b.check_box %> <%= b.label %>
       </div>
