@@ -14,6 +14,10 @@
     <%= render partial: 'categories/category_checklist', locals: {category: category, f: f} %>
   <% end %>
 
+
+  <h3>Add a new clothing item for this outfit</h3>
+  <%= render partial: 'clothing_items/form', locals: { clothing_item: @clothing_item, f: f } %>
+
   <%= f.submit %>
 
 <% end %>

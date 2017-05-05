@@ -1,0 +1,15 @@
+<div class="clothing-item-form">
+
+  <%= f.fields_for clothing_item do |c| %>
+
+    <%= c.label :name %> <br>
+    <%= c.text_field :name %> <br>
+    <%= c.label :category %> <br>
+    <%= c.collection_select :category_id, Category.all, :id, :name %> <br>
+    <%= c.label :color %> <br>
+    <%= c.text_field :color %> <br>
+    <%= c.label :fanciness %> <span class="infotext">1-5</span><br>
+    <%= c.text_field :fanciness %> <br>
+
+  <% end %>
+</div>

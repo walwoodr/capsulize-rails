@@ -65,8 +65,8 @@ RSpec.describe 'user logged in', type: :feature do
     end
 
     it 'allows you to create a new item of clothing with the outfit' do #duplicated by edit outfit page spec
-      expect(page).to have_css('input.clothing_item[name]')
-      expect(page).to have_css('input.clothing_item[color]')
+      expect(page).to have_css('input#outfit_clothing_item_name')
+      expect(page).to have_css('input#outfit_clothing_item_color')
     end
   end
 
@@ -112,8 +112,8 @@ RSpec.describe 'user logged in', type: :feature do
     end
 
     it 'allows you to create a new item of clothing on the outfit' do #duplicate of new outfit page spec
-      expect(page).to have_css('input.clothing_item[name]')
-      expect(page).to have_css('input.clothing_item[color]')
+      expect(page).to have_css('input#outfit_clothing_item_name')
+      expect(page).to have_css('input#outfit_clothing_item_color')
     end
   end
 

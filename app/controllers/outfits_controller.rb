@@ -18,6 +18,7 @@ class OutfitsController < ApplicationController
   def new
     @outfit = @user.outfits.build
     @categories = Category.all
+    @clothing_item = @user.clothing_items.build
   end
 
   def create
