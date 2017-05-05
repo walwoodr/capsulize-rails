@@ -1,19 +1,20 @@
-<%= form_for [@outfit.user, @outfit] do |f| %>
+<%#= binding.pry %>
+<%= form_for [outfit_user,outfit] do |f| %>
 
   <%= f.hidden_field :user_id %>
-  <%= f.label :name %><br>
+  <%= f.label :name, "Outfit Name" %><br>
   <%= f.text_field :name %><br>
-
-  <% @categories.each do |category| %>
+  <% Category.all.each do |category| %>
     <%= render partial: 'categories/category_checklist', locals: {category: category, f: f} %>
   <% end %>
 
 
   <h3>Add a new clothing item for this outfit</h3>
 
-    <%= f.fields_for @clothing_item do |c| %>
+    <% item = outfit_user.clothing_items.build %>
+    <%= f.fields_for item do |c| %>
 
-      <%= render partial: 'clothing_items/form_fields', locals: { clothing_item: @clothing_item, f: c } %>
+      <%= render partial: 'clothing_items/form_fields', locals: { clothing_item: item, f: c } %>
 
     <% end %>
 

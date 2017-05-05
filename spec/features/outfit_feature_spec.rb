@@ -73,15 +73,16 @@ RSpec.describe 'user logged in', type: :feature do
   describe 'new outfit creation' do
     before do
       visit new_user_outfit_path(user)
-      fill_in "Name", with: "Evening at the Opera"
-      # select "black Trousers", from "Pants"
-      # select "White Blouse", from "Shirts"
+      check "outfit_clothing_item_ids_16"
+      check "outfit_clothing_item_ids_4"
       click_button "Create Outfit"
     end
 
     let (:outfit_2) { user.outfits.find_by(name: "Evening at the Opera")}
 
     it 'creates a new outfit belonging to the user' do
+      fill_in "Outfit Name", with: "Evening at the Opera"
+
       expect(outfit_2).not_to be_nil
       expect(user.outfits.last).to eq(outfit_2)
     end
@@ -123,7 +124,7 @@ RSpec.describe 'user logged in', type: :feature do
 
     before do
       visit edit_user_outfit_path(user, outfit)
-      fill_in "Name", with: "Night on the town - best"
+      fill_in "Outfit Name", with: "Night on the town - best"
       # select "black Trousers", from "Pants"
       # select "White Blouse", from "Shirts"
       click_button "Edit Outfit"

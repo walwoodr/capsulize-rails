@@ -1,3 +1,3 @@
 <h1>New Outfit</h1>
 
-<%= render partial: 'outfits/form', locals: {outfit: @outfit} %>
+<%= render partial: 'outfits/form', :locals => {outfit_user: @user, outfit: @user.outfits.new} %>

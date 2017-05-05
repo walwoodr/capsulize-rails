@@ -16,9 +16,11 @@ class OutfitsController < ApplicationController
   end
 
   def new
-    @outfit = @user.outfits.build
-    @categories = Category.all
     @clothing_item = @user.clothing_items.build
+    @outfit = @user.outfits.build
+    if !@user
+      redirect_to new_user_session_path
+    end
   end
 
   def create
