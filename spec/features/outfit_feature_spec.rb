@@ -60,7 +60,8 @@ RSpec.describe 'user logged in', type: :feature do
 
     it 'displays clothes options by category' do #duplicated by edit outfit page spec
       expect(page).to have_text(category.name)
-      expect(page).to have_css("check_box.#{category.name}.clothing_item", count: category.clothing_items.size)
+      expect(page).to have_css("div.#{category.name}")
+      expect(page).to have_css("div.#{category.name} div.clothing-item", count: category.clothing_items.users(user).size)
     end
 
     it 'allows you to create a new item of clothing with the outfit' do #duplicated by edit outfit page spec
@@ -106,7 +107,8 @@ RSpec.describe 'user logged in', type: :feature do
 
     it 'displays clothes options by category' do #duplicate of new outfit page spec
       expect(page).to have_text(category.name)
-      expect(page).to have_css("check_box.#{category.name}.clothing_item", count: category.clothing_items.size)
+      expect(page).to have_css("div.#{category.name}")
+      expect(page).to have_css("div.#{category.name} div.clothing-item", count: category.clothing_items.users(user).size)
     end
 
     it 'allows you to create a new item of clothing on the outfit' do #duplicate of new outfit page spec

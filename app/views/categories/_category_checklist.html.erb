@@ -1,0 +1,11 @@
+<% if category.clothing_items.users(current_user).all.size > 0 %>
+<div class=<%= category.name %>>
+  <strong><%= category.name %></strong><br>
+
+    <%= f.collection_check_boxes :clothing_item_ids, category.clothing_items.users(current_user).all, :id, :name do |b| %>
+      <div class="clothing-item">
+        <%= b.check_box %> <%= b.label %>
+      </div>
+    <% end %>
+</div>
+<% end %>

@@ -17,13 +17,16 @@ class OutfitsController < ApplicationController
 
   def new
     @outfit = @user.outfits.build
+    @categories = Category.all
   end
 
   def create
+    raise params.inspect
     @outfit = @user.outfits.build
   end
 
   def edit
+    @categories = Category.all
   end
 
   def update
