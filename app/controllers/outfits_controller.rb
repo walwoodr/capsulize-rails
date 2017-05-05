@@ -38,9 +38,18 @@ class OutfitsController < ApplicationController
   end
 
   def update
+    # raise params.inspect
+    @outfit.update(outfit_params)
+    if @outfit.save
+      redirect_to user_outfit_path(@user, @outfit)
+    else
+      render 'edit'
+    end
   end
 
   def destroy
+    @outfit.delete
+    redirect_to user_outfits_path(@user)
   end
 
   private

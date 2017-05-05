@@ -124,9 +124,10 @@ RSpec.describe 'user logged in', type: :feature do
     before do
       visit edit_user_outfit_path(user, outfit)
       fill_in "Outfit Name", with: "Night on the town - best"
-      # select "black Trousers", from "Pants"
-      # select "White Blouse", from "Shirts"
-      click_button "Edit Outfit"
+      uncheck "outfit_clothing_item_ids_16"
+      check "outfit_clothing_item_ids_24"
+      click_button "Update Outfit"
+      # NOTE outfit should have items 24 and 4 and NOT 16
     end
 
     let(:changed_outfit) { user.outfits.find_by(name: "Night on the town - best")}
@@ -135,6 +136,11 @@ RSpec.describe 'user logged in', type: :feature do
       expect(user.outfits.size).to eq(outfit_count)
       expect(changed_outfit).not_to be_nil
       expect(user.outfits.find_by(name: old_name)).to be_nil
+    end
+
+    it 'updates the clothing items on the outfit' do
+      expect(changed_outfit.clothing_item_ids).to include(24)
+      expect(changed_outfit.clothing_item_ids).not_to include(16)
     end
 
     it 'redirects to view the show outfit page' do
@@ -156,7 +162,6 @@ RSpec.describe 'user logged in', type: :feature do
 
     it 'deletes the outfit' do
       expect(deleted_outfit).to be_nil
-      expect(user.outfits.size).to eq(outfit_count-1)
     end
 
     it 'redirects to the outfit index page' do
@@ -168,10 +173,10 @@ end
 
 describe 'user not logged in' do
   before do
-    visit user_outfits_path(user)
+    visit user_outfits_path(user_id: 1)
   end
 
   it 'renders an error message' do
-    expect(page).to have_text("Please log in to look at your outfits.")
+    expect(page).to have_text("You need to sign in or sign up before continuing.")
   end
 end
