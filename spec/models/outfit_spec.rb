@@ -64,6 +64,15 @@ RSpec.describe Outfit, type: :model do
     xit 'adds clothing items to the user if the user doesn\'t already own the item' do
       #write a spec for this
     end
+
+    it 'can accept params for a clothing item and create the item' do
+      outfit = Outfit.create(user_id: 1, name: "Fave outfit", clothing_item_ids: [3, 4])
+      category = Category.find_by(name: "shoes")
+      gladiators = outfit.clothing_item={name: "Gladiators", color: "grey", category_id: category.id, fanciness: 3}
+
+      expect(gladiators).not_to be_nil
+      expect(outfit.clothing_items.last.name).to eq(gladiators[:name])
+    end
   end
 
 end
