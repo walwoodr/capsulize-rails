@@ -13,4 +13,9 @@ class ClothingItem < ApplicationRecord
   has_many :user_clothing_items
   has_many :users, through: :user_clothing_items
 
+  # scope called as ClothingItem.users(user_object)
+  scope :users, lambda { |user|
+    joins(:user_clothing_items).where(user_clothing_items: {user_id: user.id})
+  }
+
 end

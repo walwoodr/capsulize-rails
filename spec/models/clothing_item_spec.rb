@@ -80,6 +80,19 @@ RSpec.describe ClothingItem, type: :model do
 
   end
 
+  describe 'scope' do
+
+    it 'has a scope for user' do
+      user = create(:user)
+      category = Category.first
+
+
+      expect(ClothingItem.users(user).size).to eq(user.clothing_items.size)
+      expect(category.clothing_items.users(user).size).to eq(user.clothing_items.where(category_id: category.id).size)
+    end
+
+  end
+
   # TODO - add spec for enum for fanciness
 
 end
