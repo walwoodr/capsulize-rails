@@ -14,10 +14,11 @@ Specs:
     - clothing item belongs to category
 
 - [x] Include at least one has_many through relationship (x has_many y through z e.g. Recipe has_many Items through Ingredients)
-    - clothing item has many outfits through join table
+    - outfit has many clothing items through join table
     - clothing item has many users through join table
 
-- [ ] The "through" part of the has_many through includes at least one user submittable attribute (attribute_name e.g. ingredients.quantity)
+- [x] The "through" part of the has_many through includes at least one user submittable attribute (attribute_name e.g. ingredients.quantity)
+    - clothing items can be can be created by users through outfits and independently
 
 - [x] Include reasonable validations for simple model objects (list of model objects with validations e.g. User, Recipe, Ingredient, Item)
     - User contains validation through Devise
@@ -26,7 +27,9 @@ Specs:
     - Outfit validates attributes
 
 - [ ] Include a class level ActiveRecord scope method (model object & class method name and URL to see the working feature e.g. User.most_recipes URL: /users/most_recipes)
-- [ ] Include a nested form writing to an associated model using a custom attribute writer (form URL, model name e.g. /recipe/new, Item)
+
+- [x] Include a nested form writing to an associated model using a custom attribute writer (form URL, model name e.g. /recipe/new, Item)
+    - Clothing Items can be created with outfits
 
 - [x] Include signup (how e.g. Devise)
     - Used Devise
@@ -42,8 +45,10 @@ Specs:
 
 - [x] Include nested resource show or index (URL e.g. users/2/recipes)
     - Outfits are nested in users
-    
-- [ ] Include nested resource "new" form (URL e.g. recipes/1/ingredients)
+
+- [x] Include nested resource "new" form (URL e.g. recipes/1/ingredients)
+    - Outfits are created on users
+
 - [ ] Include form display of validation errors (form URL e.g. /recipes/new)
 
 Confirm:

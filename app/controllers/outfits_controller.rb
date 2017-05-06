@@ -24,8 +24,8 @@ class OutfitsController < ApplicationController
   end
 
   def create
-    outfit = @user.outfits.create(outfit_params)
-    if outfit.valid?
+    outfit = @user.outfits.build(outfit_params)
+    if outfit.save
       redirect_to user_outfit_path(current_user, outfit)
     else
       render 'new'
