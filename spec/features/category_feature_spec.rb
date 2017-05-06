@@ -54,10 +54,14 @@ RSpec.feature "Category", type: :feature do
   end
 
   describe 'user not logged in' do
+
+    let(:f_cat) { Category.first }
+
     it 'index redirects to login screen' do
       visit categories_path
 
       expect(page).to have_text("Log in")
+      expect(page).not_to have_link("View #{f_cat.name}")
     end
 
     it 'show redirects to login screen' do
@@ -65,6 +69,7 @@ RSpec.feature "Category", type: :feature do
       visit category_path(f_cat)
 
       expect(page).to have_text("Log in")
+      expect(page).not_to have_text(f_cat.clothing_items.first.name)
     end
   end
 
