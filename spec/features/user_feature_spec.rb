@@ -12,7 +12,7 @@ RSpec.feature "Users", type: :feature do
       visit user_biggest_closet_path
       bc_user = User.biggest_closet
 
-      expect(page).to have_text(bc_user.name)
+      expect(page).to have_text(bc_user.first_name)
       expect(page).to have_text("Who has an astonishing #{bc_user.clothing_items.size} items in their closet.")
     end
   end
