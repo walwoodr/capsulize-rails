@@ -48,4 +48,20 @@ RSpec.describe User, type: :model do
 
   end
 
+  describe 'scope' do
+
+    it 'knows which user has the biggest closet' do
+      user_outfits = [0, ""]
+      User.all.each do |user|
+        if user.outfits.size > user_outfits[0]
+          user_outfits[0] = user.outfits.size
+          user_outfits[1] = user.id
+        end
+      end
+
+      expect(User.biggest_closet).to eq(User.find(user_outfits[1]))
+    end
+
+  end
+
 end
