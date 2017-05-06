@@ -22,7 +22,7 @@ RSpec.feature "Category", type: :feature do
       end
     end
 
-    describe 'index page' do
+    describe 'show page' do
       let(:t_cat) { Category.find(3) }
       before do
         visit category_path(t_cat)
@@ -46,7 +46,6 @@ RSpec.feature "Category", type: :feature do
   end
 
   describe 'admin' do
-
     xit 'allows editing categories' do
       # eventually
     end
@@ -57,17 +56,17 @@ RSpec.feature "Category", type: :feature do
   end
 
   describe 'user not logged in' do
-
-    let(:f_cat) { Category.first }
-    let(:l_cat) { Category.last }
-    before do
+    it 'index redirects to login screen' do
       visit categories_path
+
+      expect(page).to have_text("Log in")
     end
 
-    it 'displays a list of clothing categories' do #duplicated from logged in
-      expect(page).to have_text(f_cat.name)
-      expect(page).to have_text(l_cat.name)
-      expect(page).to have_css('div.category', count: Category.all.size)
+    it 'show redirects to login screen' do
+      t_cat = Category.find(3)
+      visit category_path(t_cat)
+
+      expect(page).to have_text("Log in")
     end
   end
 
