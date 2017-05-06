@@ -26,8 +26,8 @@ Specs:
     - ClothingItem validates attributes
     - Outfit validates attributes
 
-- [ ] Include a class level ActiveRecord scope method (model object & class method name and URL to see the working feature e.g. User.most_recipes URL: /users/most_recipes)
-    - User model has a "biggest closet" method that returns the user with the biggest closet. 
+- [x] Include a class level ActiveRecord scope method (model object & class method name and URL to see the working feature e.g. User.most_recipes URL: /users/most_recipes)
+    - User model has a "biggest closet" method that returns the user with the biggest closet. Can be found at "/user/biggest_closet"
 
 - [x] Include a nested form writing to an associated model using a custom attribute writer (form URL, model name e.g. /recipe/new, Item)
     - Clothing Items can be created with outfits
@@ -50,7 +50,8 @@ Specs:
 - [x] Include nested resource "new" form (URL e.g. recipes/1/ingredients)
     - Outfits are created on users
 
-- [ ] Include form display of validation errors (form URL e.g. /recipes/new)
+- [x] Include form display of validation errors (form URL e.g. /recipes/new)
+    - When creating ("/users/1/outfits/new") or editing ("/users/1/outfits/1/edit") an outfit, the form will display an error div when there are not enough clothing items in the outfit.
 
 Confirm:
 - [ ] The application is pretty DRY
