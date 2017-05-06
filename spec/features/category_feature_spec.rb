@@ -16,8 +16,8 @@ RSpec.feature "Category", type: :feature do
       let(:l_cat) { Category.last }
 
       it 'displays a list of clothing category links' do
-        expect(page).to have_link(f_cat.name)
-        expect(page).to have_link(l_cat.name)
+        expect(page).to have_link("View #{f_cat.name}")
+        expect(page).to have_link("View #{l_cat.name}")
         expect(page).to have_css('div.category', count: Category.all.size)
       end
     end

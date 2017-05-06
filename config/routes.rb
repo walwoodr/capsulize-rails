@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'outfits#index'
 
   devise_for :users
-  resources :categories, only: [:index]
+  resources :categories, only: [:index, :show]
   resources :clothing_items
   resources :users do
     resources :outfits

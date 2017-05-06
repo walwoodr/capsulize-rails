@@ -1,0 +1,10 @@
+<h1>Clothing Categories</h1>
+
+<% @categories.each do |category| %>
+
+  <div class="category">
+    <h3><%= category.name %></h3>
+    <p><%= link_to "View #{category.name}", category_path(category) %></p>
+  </div>
+
+<% end %>
