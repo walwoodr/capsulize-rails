@@ -38,6 +38,9 @@ gem 'devise'
 # Use Pundit for authorization
 gem 'pundit'
 
+# Use figaro for storing secrets
+gem 'figaro'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
