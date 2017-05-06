@@ -23,24 +23,22 @@ RSpec.feature "Category", type: :feature do
     end
 
     describe 'show page' do
-      let(:t_cat) { Category.find(3) }
+      let(:f_cat) { Category.find(5) }
       before do
-        visit category_path(t_cat)
+        visit category_path(f_cat)
       end
 
       it 'displays a list of clothing items in the category' do
-        expect(page).to have_text(t_cat.clothing_items.first.name)
-        expect(page).to have_text(t_cat.clothing_items.first.color)
-        expect(page).to have_text(word_fanciness(t_cat.clothing_items.first))
-        expect(page).to have_text(t_cat.clothing_items.last.name)
-        expect(page).to have_text(t_cat.clothing_items.last.color)
-        expect(page).to have_text(word_fanciness(t_cat.clothing_items.last))
-        expect(page).to have_css('li.clothing_item', count: t_cat.clothing_items.size)
+        expect(page).to have_text(f_cat.clothing_items.first.name)
+        expect(page).to have_text(f_cat.clothing_items.first.color)
+        expect(page).to have_text(f_cat.clothing_items.last.name)
+        expect(page).to have_text(f_cat.clothing_items.last.color)
+        expect(page).to have_css('li.clothing-item', count: f_cat.clothing_items.size)
       end
 
       it 'allows users to add a clothing item to their closet' do
         expect(page).to have_link("Add to my closet")
-        expect(page).to have_link("Bulk add")
+        #expect(page).to have_link("Bulk add")
       end
     end
   end
@@ -63,8 +61,8 @@ RSpec.feature "Category", type: :feature do
     end
 
     it 'show redirects to login screen' do
-      t_cat = Category.find(3)
-      visit category_path(t_cat)
+      f_cat = Category.find(5)
+      visit category_path(f_cat)
 
       expect(page).to have_text("Log in")
     end
