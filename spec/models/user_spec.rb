@@ -64,4 +64,19 @@ RSpec.describe User, type: :model do
 
   end
 
+  describe 'methods' do
+
+    let(:user) { FactoryGirl.create(:user) }
+    let(:pants) { FactoryGirl.create(:pants) }
+    let(:jeans) { FactoryGirl.create(:jeans, category: pants, color: "rainbow stripes") }
+
+    it '.add_to_closet adds the item to the user\'s closet' do
+      user.add_to_closet(jeans)
+
+      expect(user.clothing_items.last).to eq(jeans)
+      expect(user.clothing_items.find_by(name: jeans.name)).not_to be_nil
+    end
+
+  end
+
 end

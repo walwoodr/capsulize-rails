@@ -15,4 +15,8 @@ class User < ApplicationRecord
     all.joins(:user_clothing_items).select("users.*, count(user_clothing_items.clothing_item_id) AS item_count").group("users.id").order("item_count DESC").limit(1).first
   end
 
+  def add_to_closet(clothing_item)
+    self.user_clothing_items.find_or_create_by(clothing_item_id: clothing_item.id)
+  end
+
 end
