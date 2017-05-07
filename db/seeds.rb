@@ -46,6 +46,7 @@ black_loafers =  ClothingItem.create(name: "Loafers", color: "black", fanciness:
 brown_brogues =  ClothingItem.create(name: "Brogues", color: "brown", fanciness: 5, category: shoes)
 gold_sandals =  ClothingItem.create(name: "Sandals", color: "gold", fanciness: 2, category: shoes)
 nude_pumps =  ClothingItem.create(name: "Pumps", color: "nude", fanciness: 2, category: shoes)
+blazer =  ClothingItem.create(name: "Blazer", color: "grey", fanciness: 4, category: jacket)
 
 rachel.clothing_items = [blue_jeans3, blue_jeans4, black_trousers, orange_cords, white_polo, white_blouse, blue_t, green_t, red_t, black_t, blue_sneakers, brown_brogues, gold_sandals, nude_pumps]
 amanda.clothing_items = [blue_jeans3, blue_jeans4, black_trousers, orange_cords, white_polo, white_blouse, blue_t, green_t, red_t, black_t, blue_sneakers, brown_brogues, gold_sandals, nude_pumps, pink_cords, purple_blouse, yellow_t]

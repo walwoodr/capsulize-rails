@@ -23,22 +23,31 @@ RSpec.feature "Category", type: :feature do
     end
 
     describe 'show page' do
-      let(:f_cat) { Category.find(5) }
+      let(:jackets) { Category.find_by(name: "jackets") }
+      let(:first_item) { jackets.clothing_items.first }
       before do
-        visit category_path(f_cat)
+        visit category_path(jackets)
       end
 
       it 'displays a list of clothing items in the category' do
-        expect(page).to have_text(f_cat.clothing_items.first.name)
-        expect(page).to have_text(f_cat.clothing_items.first.color)
-        expect(page).to have_text(f_cat.clothing_items.last.name)
-        expect(page).to have_text(f_cat.clothing_items.last.color)
-        expect(page).to have_css('li.clothing-item', count: f_cat.clothing_items.size)
+        expect(page).to have_text(first_item.name)
+        expect(page).to have_text(first_item.color)
+        expect(page).to have_css('li.clothing-item', count: jackets.clothing_items.size)
       end
 
-      it 'allows users to add a clothing item to their closet' do
+      it 'shows link to add a clothing item to their closet' do
         expect(page).to have_link("Add to my closet")
-        #expect(page).to have_link("Bulk add")
+      end
+
+      xit 'only shows link to add a clothing item to their closet if the user doesn\'t already have the itme in their closet' do
+        expect(page).to have_link("Add to my closet")
+      end
+
+      it 'adds clothing item to their closet on link click' do
+        click_link("Add to my closet")
+
+        expect(page).to have_text("#{first_item.name} have been added to your closet")
+        expect(page).to have_text(first_item.name)
       end
     end
   end
