@@ -1,4 +1,5 @@
 <h1>Your Outfits</h1>
+<%= Figaro.env.facebook_app_id %>
 <%= link_to "New Outfit", new_user_outfit_path(current_user), id: "new-outfit" %>
 
 <%= render(@outfits) || "You don't have any outfits yet." %>
