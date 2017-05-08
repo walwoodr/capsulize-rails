@@ -15,7 +15,6 @@ RSpec.feature "Layout", type: :feature do
     end
 
     it 'displays app navigation' do
-      expect(page).to have_link("Home")
       expect(page).to have_link("Outfits")
       expect(page).to have_link("Categories")
       expect(page).to have_link("Clothes")
