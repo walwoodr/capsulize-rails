@@ -37,11 +37,11 @@ RSpec.feature "Clothing Items", type: :feature do
       before do
         visit clothing_items_path
         click_link("Create new item")
-        fill_in "Clothing Item Name", with: "Leggings"
+        fill_in "Name", with: "Leggings"
         fill_in "Color", with: "silver"
-        fill_in "fanciness", with: "4"
-        select "pants", from: "Categories"
-        click_button "Create Clothing Item"
+        fill_in "Fanciness", with: "4"
+        select "pants", from: "clothing_item[category_id]"
+        click_button "Create Clothing item"
       end
 
       it 'adds a new item in the user\'s closet' do
