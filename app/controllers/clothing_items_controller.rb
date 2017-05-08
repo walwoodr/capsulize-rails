@@ -4,7 +4,8 @@ class ClothingItemsController < ApplicationController
     before_action :authenticate_user!
 
     def index
-      @clothing_items = ClothingItem.all
+      @clothing_items = current_user.clothing_items
+      @categories = Category.all
     end
 
     def show

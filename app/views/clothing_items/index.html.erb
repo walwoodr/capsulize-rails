@@ -1,0 +1,18 @@
+<h1>Clothing Items</h1>
+<%= link_to "Create new item", new_clothing_item_path %>
+
+
+<% @categories.each do |category| %>
+
+  <% if @clothing_items.where(category_id: category.id).size > 0 %>
+
+    <h2><%= category.name %></h2>
+    <ul>
+    <% @clothing_items.where(category_id: category.id).each do |item| %>
+      <li><%= attributes_display(item) %> | <%= link_to "remove", user_clothing_item_path(item), method: "delete" %></li>
+    <% end %>
+    </ul>
+
+  <% end %>
+
+<% end %>

@@ -17,15 +17,15 @@ RSpec.feature "Clothing Items", type: :feature do
       end
 
       it 'displays a list of clothing items by category' do
-        expect(page).to have_text("pants")
-        expect(page).to have_text("#{jeans.name} | #{jeans.color} | #{word_fanciness(jeans)}")
+        expect(page).to have_text("Pants")
+        expect(page).to have_text("#{jeans.name} | #{jeans.color} | ")
       end
 
       it 'allows a user to remove a clothing item from their closet' do
         click_link("remove")
 
         expect(page).to have_text("#{jeans.color} #{jeans.name} have been removed from your closet")
-        expect(page).not_to have_text("#{jeans.name} | #{jeans.color} | #{word_fanciness(jeans)}")
+        expect(page).not_to have_text("#{jeans.name} | #{jeans.color} | ")
       end
 
       it 'displays a link for a user to add a new item' do
