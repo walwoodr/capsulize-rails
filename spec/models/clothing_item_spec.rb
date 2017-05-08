@@ -62,7 +62,7 @@ RSpec.describe ClothingItem, type: :model do
     end
 
     it 'has many outfits' do
-      new_item = ClothingItem.create(name: "Asymetric crop top", color: "blue", fanciness: 5, category: Category.find_by(name: 'shirt'))
+      new_item = ClothingItem.create(name: "Asymetric crop top", color: "blue", fanciness: 5, category: Category.find(2))
       Outfit.create(clothing_items: [new_item, ClothingItem.find(3)], user_id: 1)
       Outfit.create(clothing_items: [new_item, ClothingItem.find(8)], user_id: 1)
 

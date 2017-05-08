@@ -4,7 +4,7 @@
   <% @category.clothing_items.each do |item| %>
     <li class="clothing-item">
       <%= attributes_display(item) %> |
-      <%= link_to "Add to my closet", user_clothing_items_path(item), method: 'post', class: 'add-item' %>
+      <%= link_to "Add to my closet", user_clothing_items_path(item), method: :post %>
     </li>
   <% end %>
 </ul>
