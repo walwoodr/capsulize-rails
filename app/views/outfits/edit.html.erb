@@ -1,6 +1,3 @@
 <h1>Edit <%= @outfit.name %></h1>
 <br>
-<div class="row">
   <%= render partial: 'outfits/form', locals: {outfit: @outfit, outfit_user: @user} %>
-  <%= link_to "Delete outfit", user_outfit_path(@user, @outfit), method: 'delete', class: "delete-outfit-link" %>
-</div>

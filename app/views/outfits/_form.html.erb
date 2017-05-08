@@ -1,32 +1,36 @@
-<div class="six columns">
+<div class="row">
   <%= form_for [outfit_user,outfit] do |f| %>
-
-    <%= f.hidden_field :user_id %>
-    <%= f.label :name, "Outfit Name" %>
-    <%= f.text_field :name %>
-    <div class="clothing_items_by_category">
-      <% if outfit.errors[:clothing_item_ids].size > 0 %>
-        <div class="field_with_errors">
-          <p>Your outfit must include at least two items of clothing.</p>
+    <div class="five columns">
+        <%= f.hidden_field :user_id %>
+        <%= f.label :name, "Outfit Name" %>
+        <%= f.text_field :name %>
+        <div class="clothing_items_by_category">
+          <% if outfit.errors[:clothing_item_ids].size > 0 %>
+            <div class="field_with_errors">
+              <p>Your outfit must include at least two items of clothing.</p>
+            </div>
+          <% end %>
+          <% Category.all.each do |category| %>
+            <%= render partial: 'categories/category_checklist', locals: {category: category, f: f} %>
+          <% end %>
         </div>
-      <% end %>
-      <% Category.all.each do |category| %>
-        <%= render partial: 'categories/category_checklist', locals: {category: category, f: f} %>
-      <% end %>
     </div>
+
+    <div class="six columns">
+      <div class="new-item-outfit">
+        <h5>Add a new clothing item for this outfit</h5>
+
+          <% item = outfit_user.clothing_items.build %>
+          <%= f.fields_for item do |c| %>
+
+            <%= render partial: 'clothing_items/form_fields', locals: { clothing_item: item, f: c } %>
+
+          <% end %><br>
+      </div>
+        <%= f.submit %>
+        <% if outfit.persisted? %>
+          <%= link_to "Delete outfit", user_outfit_path(@user, @outfit), method: 'delete', class: "delete-outfit-link" %>
+        <% end %>
+    </div>
+  <% end %>
 </div>
-
-<div class="six columns">
-  <div class="new-item-outfit">
-    <h5>Add a new clothing item for this outfit</h5>
-
-      <% item = outfit_user.clothing_items.build %>
-      <%= f.fields_for item do |c| %>
-
-        <%= render partial: 'clothing_items/form_fields', locals: { clothing_item: item, f: c } %>
-
-      <% end %><br>
-  </div>
-    <%= f.submit %>
-</div>
-<% end %>

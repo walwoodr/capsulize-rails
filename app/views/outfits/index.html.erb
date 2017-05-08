@@ -1,6 +1,6 @@
 <h1>Your Outfits</h1>
 <%= Figaro.env.facebook_app_id %>
-<%= link_to "New Outfit", new_user_outfit_path(current_user), id: "new-outfit" %>
+<%= link_to "New Outfit", new_user_outfit_path(current_user), class: "button-link" %>
 
 <% if @outfits.size > 0 %>
   <% @outfits.in_groups_of(3, false).each do |set| %>
