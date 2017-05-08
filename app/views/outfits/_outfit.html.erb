@@ -1,11 +1,14 @@
-<div class="outfit four columns">
-  <%= outfit.name %>
+<div class="four columns">
+  <div class="outfit">
 
-  <ul>
-    <% outfit.clothing_items.each do |clothing_item| %>
-      <li><%= attributes_display(clothing_item) %></li>
-    <% end %>
-  </ul>
+    <%= link_to "Details", user_outfit_path(outfit.user, outfit), class: "details-outfit" %>
+      <h5><%= outfit.name %></h5>
 
-  <%= link_to "Details", user_outfit_path(outfit.user, outfit), class: "details-outfit" %>
+      <ul class="outfit-items">
+        <% outfit.clothing_items.each do |clothing_item| %>
+          <li><%= attributes_display(clothing_item) %></li>
+        <% end %>
+      </ul>
+
+  </div>
 </div>

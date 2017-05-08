@@ -1,6 +1,6 @@
 <% if category.clothing_items.users(current_user).all.size > 0 %>
 <div class=<%= category.name %>>
-  <strong><%= category.name %></strong><br>
+  <h5 class="category-name"><%= category.name %></h5>
 
     <%= f.collection_check_boxes :clothing_item_ids, category.clothing_items.users(current_user).all, :id, :name do |b| %>
       <div class="clothing-item">
@@ -10,4 +10,4 @@
 </div>
 <% end %>
 
-<!-- TODO: instead of :name above, i'd like to display attributes_display(item) -->
+<%# TODO: instead of :name above, i'd like to display attributes_display(item) %>

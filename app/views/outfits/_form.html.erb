@@ -1,29 +1,32 @@
-<%= form_for [outfit_user,outfit] do |f| %>
+<div class="six columns">
+  <%= form_for [outfit_user,outfit] do |f| %>
 
-  <%= f.hidden_field :user_id %>
-  <%= f.label :name, "Outfit Name" %><br>
-  <%= f.text_field :name %><br>
-  <div class="clothing_items_by_category">
-    <% if outfit.errors[:clothing_item_ids] %>
-      <div class="field_with_errors">
-        <p>Your outfit must include at least two items of clothing.</p>
-      </div>
-    <% end %>
-    <% Category.all.each do |category| %>
-      <%= render partial: 'categories/category_checklist', locals: {category: category, f: f} %>
-    <% end %>
+    <%= f.hidden_field :user_id %>
+    <%= f.label :name, "Outfit Name" %>
+    <%= f.text_field :name %>
+    <div class="clothing_items_by_category">
+      <% if outfit.errors[:clothing_item_ids].size > 0 %>
+        <div class="field_with_errors">
+          <p>Your outfit must include at least two items of clothing.</p>
+        </div>
+      <% end %>
+      <% Category.all.each do |category| %>
+        <%= render partial: 'categories/category_checklist', locals: {category: category, f: f} %>
+      <% end %>
+    </div>
+</div>
+
+<div class="six columns">
+  <div class="new-item-outfit">
+    <h5>Add a new clothing item for this outfit</h5>
+
+      <% item = outfit_user.clothing_items.build %>
+      <%= f.fields_for item do |c| %>
+
+        <%= render partial: 'clothing_items/form_fields', locals: { clothing_item: item, f: c } %>
+
+      <% end %><br>
   </div>
-
-
-  <h3>Add a new clothing item for this outfit</h3>
-
-    <% item = outfit_user.clothing_items.build %>
-    <%= f.fields_for item do |c| %>
-
-      <%= render partial: 'clothing_items/form_fields', locals: { clothing_item: item, f: c } %>
-
-    <% end %>
-
-  <br> <%= f.submit %>
-
+    <%= f.submit %>
+</div>
 <% end %>

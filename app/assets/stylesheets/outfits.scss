@@ -1,3 +1,45 @@
 // Place all the styles related to the outfits controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.outfit-items,
+h5,
+h1 {
+  margin-bottom: 5px;
+}
+
+#new-outfit {
+  display: inline-block;
+  border: 1px black solid;
+  text-decoration: none;
+  padding: 4px 8px;
+  margin: 0 0 20px 0;
+  color: #fff;
+  background: #666;
+}
+
+#new-outfit:hover {
+  background: #555;
+}
+
+.outfit,
+.new-item-outfit {
+  background-color: #e3e7ea;
+  margin: 7px 0;
+  padding: 10px;
+}
+
+.details-outfit,
+.delete-outfit-link {
+  display: inline-block;
+  float: right;
+  text-decoration: none;
+}
+
+.clothing-item label {
+  display: inline;
+}
+
+h5.category-name {
+  margin: 5px;
+}
