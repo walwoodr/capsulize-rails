@@ -9,8 +9,10 @@
   </head>
 
   <body>
-    <%= render 'layouts/messages' %>
     <%= render 'layouts/navigation' %>
-    <%= yield %>
+    <div class="section">
+      <%= render 'layouts/messages' %>
+      <%= yield %>
+    </div>
   </body>
 </html>

@@ -14,10 +14,57 @@
  *= require_self
  */
 
- * {
-   box-sizing: border-box;
- }
+* {
+ box-sizing: border-box;
+}
 
- body {
-   margin: 10px 40px;
- }
+.section {
+ margin: 10px 40px;
+}
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	height: 0;
+	line-height: 0;
+}
+
+.button-link {
+ display: inline-block;
+ border: 1px black solid;
+ text-decoration: none;
+ padding: 4px 8px;
+ margin: 0 0 20px 0;
+ color: #fff;
+ background: #666;
+}
+
+.button-link:hover {
+ background: #555;
+}
+
+.navigation {
+ background: #c9d7db;
+ text-align: right;
+ padding-right: 20px;
+ color: #222;
+}
+
+.navigation h1 {
+ float: left;
+ margin: 10px;
+ font-size: 2em;
+}
+
+.navigation a {
+ text-decoration: none;
+ display: inline-block;
+ margin: 3px;
+}
+
+.navigation a:hover {
+ text-decoration: underline;
+ color: #234d6d;
+}

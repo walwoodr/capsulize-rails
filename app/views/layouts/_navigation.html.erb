@@ -1,11 +1,16 @@
-<div class="navigation">
+<div class="navigation clearfix">
+  <h1>Capsulize</h1>
   <% if current_user %>
-    <%= link_to "Sign Out", destroy_user_session_path, method: "delete" %>
-    <%= link_to "Settings", edit_user_registration_path %>
-    <%= link_to "Home", root_path %>
-    <%= link_to "Outfits", user_outfits_path(current_user) %>
-    <%= link_to "Categories", categories_path %>
-    <%= link_to "Clothes", clothing_items_path %>
+    <span id="app-nav">
+      <%= link_to "Outfits", user_outfits_path(current_user) %>
+      <%= link_to "Categories", categories_path %>
+      <%= link_to "Clothes", clothing_items_path %>
+    </span>
+    |
+    <span id="auth-nav">
+      <%= link_to "Sign Out", destroy_user_session_path, method: "delete" %>
+      <%= link_to "Settings", edit_user_registration_path %>
+    </span>
   <% else %>
     <%= link_to "Sign Up", new_user_registration_path %>
     <%= link_to "Log In", new_user_session_path %>
