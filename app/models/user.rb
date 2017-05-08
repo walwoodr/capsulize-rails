@@ -19,4 +19,9 @@ class User < ApplicationRecord
     self.user_clothing_items.find_or_create_by(clothing_item_id: clothing_item.id)
   end
 
+  def remove_from_closet(clothing_item)
+    uci = self.user_clothing_items.find_by(clothing_item_id: clothing_item.id)
+    uci.delete
+  end
+
 end

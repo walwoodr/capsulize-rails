@@ -77,6 +77,14 @@ RSpec.describe User, type: :model do
       expect(user.clothing_items.find_by(name: jeans.name)).not_to be_nil
     end
 
+    it '.remove_from_closet remvoes the item from the user\'s closet' do
+      user.add_to_closet(jeans)
+      user.remove_from_closet(jeans)
+
+      expect(user.clothing_items.last).not_to eq(jeans)
+      expect(user.clothing_items.find_by(name: jeans.name)).to be_nil
+    end
+
   end
 
 end
