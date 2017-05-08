@@ -41,8 +41,8 @@ Specs:
 - [x] Include logout (how e.g. Devise)
     - Used Devise
 
-- [ ] Include third party signup/login (how e.g. Devise/OmniAuth)
-    - Planning to use Devise OmniAuth gem for Pinterest
+- [x] Include third party signup/login (how e.g. Devise/OmniAuth)
+    - Used omniauth gem for Facebook.
 
 - [x] Include nested resource show or index (URL e.g. users/2/recipes)
     - Outfits are nested in users
@@ -54,7 +54,7 @@ Specs:
     - When creating ("/users/1/outfits/new") or editing ("/users/1/outfits/1/edit") an outfit, the form will display an error div when there are not enough clothing items in the outfit.
 
 Confirm:
-- [ ] The application is pretty DRY
-- [ ] Limited logic in controllers
-- [ ] Views use helper methods if appropriate
-- [ ] Views use partials if appropriate
+- [x] The application is pretty DRY
+- [x] Limited logic in controllers
+- [x] Views use helper methods if appropriate
+- [x] Views use partials if appropriate
