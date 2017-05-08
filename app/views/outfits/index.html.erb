@@ -2,4 +2,14 @@
 <%= Figaro.env.facebook_app_id %>
 <%= link_to "New Outfit", new_user_outfit_path(current_user), id: "new-outfit" %>
 
-<%= render(@outfits) || "You don't have any outfits yet." %>
+<% if @outfits.size > 0 %>
+  <% @outfits.in_groups_of(3, false).each do |set| %>
+    <div class="row">
+      <% set.each do |item| %>
+        <%= render partial: 'outfits/outfit', locals: {outfit: item} %>
+      <% end %>
+    </div>
+    <% end %>
+<% else %>
+  <p>"You don't have any outfits yet."</p>
+<% end %>
