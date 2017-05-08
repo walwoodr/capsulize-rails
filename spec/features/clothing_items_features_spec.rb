@@ -33,18 +33,18 @@ RSpec.feature "Clothing Items", type: :feature do
       end
     end
 
-    describe 'new outfit creation' do
+    describe 'new clothing item creation' do
       before do
         visit clothing_items_path
         click_link("Create new item")
         fill_in "Name", with: "Leggings"
+      end
+
+      it 'adds a valid new item to the user\'s closet' do
         fill_in "Color", with: "silver"
         fill_in "Fanciness", with: "4"
         select "pants", from: "clothing_item[category_id]"
         click_button "Create Clothing item"
-      end
-
-      it 'adds a new item in the user\'s closet' do
         leggings = user.clothing_items.last
 
         expect(leggings).not_to be_nil
@@ -52,6 +52,13 @@ RSpec.feature "Clothing Items", type: :feature do
         expect(leggings.color).to eq("silver")
         expect(leggings.fanciness).to eq(4)
         expect(page).to have_text("Leggings | silver")
+      end
+
+      it 'does not add an invalid item to the user\'s closet' do
+        fill_in "Fanciness", with: "4"
+        click_button "Create Clothing item"
+
+        expect(page).to have_text("Color can't be blank, Category can't be blank")
       end
     end
   end

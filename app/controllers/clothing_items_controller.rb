@@ -16,10 +16,15 @@ class ClothingItemsController < ApplicationController
     end
 
     def create
-      @clothing_item = ClothingItem.create(clothing_item_params)
-      current_user.add_to_closet(@clothing_item)
-      flash[:message] = "#{@clothing_item.name} have been added to your closet."
-      redirect_to clothing_items_path
+      @clothing_item = ClothingItem.new(clothing_item_params)
+      if @clothing_item.save
+        current_user.add_to_closet(@clothing_item)
+        flash[:message] = "#{@clothing_item.name} have been added to your closet."
+        redirect_to clothing_items_path
+      else
+        flash[:alert] = @clothing_item.errors.full_messages.join(", ")
+        render :new
+      end
     end
 
     def edit
