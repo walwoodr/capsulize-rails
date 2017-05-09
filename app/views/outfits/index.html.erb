@@ -1,5 +1,4 @@
 <h1>Your Outfits</h1>
-<%= Figaro.env.facebook_app_id %>
 <%= link_to "New Outfit", new_user_outfit_path(current_user), class: "button-link" %>
 
 <% if @outfits.size > 0 %>
@@ -11,5 +10,5 @@
     </div>
     <% end %>
 <% else %>
-  <p>"You don't have any outfits yet."</p>
+  <p>You don't have any outfits yet.</p>
 <% end %>
