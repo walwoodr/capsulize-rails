@@ -1,4 +1,6 @@
-<h1>Clothing Categories</h1>
+<% content_for :h2 do %>
+  Clothing Categories
+<% end %>
 
 <% @categories.in_groups_of(4, false).each do |set| %>
   <div class="row">

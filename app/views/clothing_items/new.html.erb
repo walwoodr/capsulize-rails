@@ -1,2 +1,5 @@
-<h2>New Clothing Item</h2>
+<% content_for :h2 do %>
+  New Clothing Item
+<% end %>
+
 <%= render partial: 'clothing_items/form', locals: {clothing_item: @clothing_item} %>

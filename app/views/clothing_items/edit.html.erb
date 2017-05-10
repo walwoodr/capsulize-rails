@@ -1,2 +1,5 @@
-<h2>Edit <%= @clothing_item.name %></h2>
+<% content_for :h2 do %>
+  Edit <%= @clothing_item.name %>
+<% end %>
+
 <%= render partial: 'clothing_items/form', locals: {clothing_item: @clothing_item} %>
