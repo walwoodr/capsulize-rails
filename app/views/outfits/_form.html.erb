@@ -1,40 +1,37 @@
 <div class="row">
   <%= form_for [outfit_user, outfit] do |f| %>
+
     <div class="five columns">
         <%= f.hidden_field :user_id %>
         <%= f.label :name, "Outfit Name" %>
         <%= f.text_field :name %>
-        <% if outfit.clothing_items.size < 2 && outfit.errors.size > 0 %>
-          <div class="div_with_errors clothing_items_by_category">
-            <p>Your outfit must include at least two items of clothing.</p>
-        <% else %>
-          <div class="clothing_items_by_category">
-        <% end %>
+
+        <div class=<%= items_div_class(outfit) %>>
+          <%= outfit_error_message(outfit) %>
+
           <% Category.all.each do |category| %>
             <%= render partial: 'categories/category_checklist', locals: {category: category, f: f} %>
           <% end %>
+
         </div>
     </div>
 
     <div class="six columns">
       <div class="new-item-outfit">
         <h5>Add a new clothing item for this outfit</h5>
-          <% if item.errors.size > 0 %>
-            <div class="alert-flash">
-              <%= item.errors.full_messages.join(", ") %>
-            </div>
-          <% end %>
+
+          <%= outfit_item_error(item) %>
+
           <% item ||= outfit_user.clothing_items.build %>
+
           <%= f.fields_for item do |c| %>
-
             <%= render partial: 'clothing_items/form_fields', locals: { clothing_item: item, f: c } %>
-
           <% end %><br>
+
       </div>
-        <%= f.submit %>
-        <% if outfit.persisted? %>
-          <%= link_to "Delete outfit", user_outfit_path(@user, @outfit), method: 'delete', class: "delete-outfit-link" %>
-        <% end %>
+      <%= f.submit %>
+      <%= delete_link(@user, @outfit) %>
     </div>
+
   <% end %>
 </div>

@@ -36,11 +36,12 @@ class OutfitsController < ApplicationController
 
   def edit
     @categories = Category.all
-    @clothing_item = @user.clothing_items.build
+    @clothing_item = @outfit.clothing_items.build
   end
 
   def update
     @outfit.update(outfit_params)
+    @clothing_item = @outfit.clothing_items.build(item_params[:clothing_item]) if (item_params[:clothing_item][:name] != "" || item_params[:clothing_item][:color] != "" || item_params[:clothing_item][:category_id] != "")
     if @outfit.save
       redirect_to user_outfit_path(@user, @outfit)
     else
