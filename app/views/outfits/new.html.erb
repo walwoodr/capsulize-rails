@@ -1,2 +1,2 @@
 <%= header("outfits", "New Outfit") %>
-<%= render partial: 'outfits/form', :locals => {outfit_user: @user, outfit: @user.outfits.new} %>
+<%= render partial: 'outfits/form', :locals => {outfit: @outfit, outfit_user: @user, item: @clothing_item} %>

@@ -24,10 +24,12 @@ class OutfitsController < ApplicationController
   end
 
   def create
-    outfit = @user.outfits.build(outfit_params)
-    if outfit.save
-      redirect_to user_outfit_path(current_user, outfit)
+    @outfit = @user.outfits.build(outfit_params)
+    @clothing_item = @outfit.clothing_items.build(item_params[:clothing_item]) if (item_params[:clothing_item][:name] != "" || item_params[:clothing_item][:color] != "" || item_params[:clothing_item][:category_id] != "")
+    if @outfit.save
+      redirect_to user_outfit_path(current_user, @outfit)
     else
+      @clothing_item ||= @user.clothing_items.build
       render 'new'
     end
   end
@@ -38,7 +40,6 @@ class OutfitsController < ApplicationController
   end
 
   def update
-    # raise params.inspect
     @outfit.update(outfit_params)
     if @outfit.save
       redirect_to user_outfit_path(@user, @outfit)
@@ -67,7 +68,11 @@ class OutfitsController < ApplicationController
   end
 
   def outfit_params
-    params.require(:outfit).permit(:user_id, :name, :clothing_item_ids => [], :clothing_item => [:name, :category_id, :color, :fanciness])
+    params.require(:outfit).permit(:user_id, :name, :clothing_item_ids => [])
+  end
+
+  def item_params
+    params.require(:outfit).permit(clothing_item: [:name, :category_id, :color, :fanciness])
   end
 
 end
