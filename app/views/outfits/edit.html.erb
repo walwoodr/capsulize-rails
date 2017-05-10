@@ -1,5 +1,2 @@
-<% content_for :h2 do %>
-  Edit <%= @outfit.name %>
-<% end %>
-<br>
-  <%= render partial: 'outfits/form', locals: {outfit: @outfit, outfit_user: @user} %>
+<%= header("outfits", "Edit #{@outfit.name}") %>
+<%= render partial: 'outfits/form', locals: {outfit: @outfit, outfit_user: @user} %>

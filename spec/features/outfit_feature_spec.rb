@@ -166,7 +166,7 @@ RSpec.describe 'Outfit', type: :feature do
       end
 
       it 'redirects to the outfit index page' do
-        expect(page).to have_text("Your Outfits")
+        expect(page).to have_text("your outfits")
       end
     end
 

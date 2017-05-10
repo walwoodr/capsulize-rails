@@ -1,6 +1,4 @@
-<% content_for :h2 do %>
-  Clothing Categories
-<% end %>
+<%= header("categories") %>
 
 <% @categories.in_groups_of(4, false).each do |set| %>
   <div class="row">

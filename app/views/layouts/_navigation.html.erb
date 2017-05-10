@@ -1,5 +1,5 @@
 <div class="navigation clearfix">
-  <h1>Capsulize</h1>
+  <h1>Capsulize | <span><%= yield :h2 %></span></h1>
   <% if current_user %>
     <span id="app-nav">
       <%= link_to "Outfits", user_outfits_path(current_user) %>

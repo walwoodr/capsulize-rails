@@ -1,6 +1,4 @@
-<% content_for :h2 do %>
-  <%= @category.name %>
-<% end %>
+<%= header("categories", @category.name) %>
 
 <ul>
   <% @category.clothing_items.each do |item| %>

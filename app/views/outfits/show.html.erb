@@ -1,7 +1,4 @@
-<% content_for :h2 do %>
-  <%= @outfit.name %>
-<% end %>
-
+<%= header("outfits", @outfit.name) %>
 
 <ul>
   <% @outfit.clothing_items.each do |clothing_item| %>

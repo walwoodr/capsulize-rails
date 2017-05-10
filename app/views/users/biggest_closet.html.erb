@@ -1,6 +1,4 @@
-<% content_for :h2 do %>
-  The biggest closet is owned by <%= @user.first_name %> <%= @user.last_name %>!
-<% end %>
+<%= header("biggest closet", "The biggest closet is owned by #{@user.first_name} #{@user.last_name}!") %>
 
 <p>Who has an astonishing <%= @user.clothing_items.size %> items in their closet.
 </p>

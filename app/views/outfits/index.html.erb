@@ -1,6 +1,4 @@
-<% content_for :h2 do %>
-  Your Outfits
-<% end %>
+<%= header("your outfits") %>
 <%= link_to "New Outfit", new_user_outfit_path(current_user), class: "button-link" %>
 
 <% if @outfits.size > 0 %>

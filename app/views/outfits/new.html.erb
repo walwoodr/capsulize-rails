@@ -1,5 +1,2 @@
-<% content_for :h2 do %>
-  New Outfit
-<% end %>
-<br>
+<%= header("outfits", "New Outfit") %>
 <%= render partial: 'outfits/form', :locals => {outfit_user: @user, outfit: @user.outfits.new} %>
