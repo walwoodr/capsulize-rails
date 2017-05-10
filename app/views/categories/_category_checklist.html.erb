@@ -4,7 +4,7 @@
 
     <%= f.collection_check_boxes :clothing_item_ids, category.clothing_items.users(current_user).all, :id, :name do |b| %>
       <div class="clothing-item">
-        <%= b.check_box %> <%= b.label %>
+        <%= b.check_box %> <%= content_tag(:label, attributes_display(b.object), for: "outfit_clothing_item_ids_#{b.object.id}") %>
       </div>
     <% end %>
 </div>
