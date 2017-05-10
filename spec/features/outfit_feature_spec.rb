@@ -69,6 +69,24 @@ RSpec.describe 'Outfit', type: :feature do
         expect(page).to have_css('input#outfit_clothing_item_name')
         expect(page).to have_css('input#outfit_clothing_item_color')
       end
+
+      describe 'form errors' do # duplicated by edit outfit page spec
+        xit 'displays error if only 1 clothing item selected' do
+
+        end
+
+        xit 'does not display error if 1 item selected and new item invalid' do
+
+        end
+
+        xit 'does not display error if 1 item selected and new item valid' do
+
+        end
+
+        xit 'displays clothing item error if item invalid' do
+
+        end
+      end
     end
 
     describe 'new outfit creation' do
@@ -115,6 +133,24 @@ RSpec.describe 'Outfit', type: :feature do
       it 'allows you to create a new item of clothing on the outfit' do #duplicate of new outfit page spec
         expect(page).to have_css('input#outfit_clothing_item_name')
         expect(page).to have_css('input#outfit_clothing_item_color')
+      end
+
+      describe 'form errors' do # duplicate of new outfit page spec
+        xit 'displays error if only 1 clothing item selected' do
+
+        end
+
+        xit 'does not display error if 1 item selected and new item invalid' do
+
+        end
+
+        xit 'does not display error if 1 item selected and new item valid' do
+
+        end
+
+        xit 'displays clothing item error if item invalid' do
+
+        end
       end
     end
 
