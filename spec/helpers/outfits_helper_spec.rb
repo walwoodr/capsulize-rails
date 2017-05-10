@@ -11,5 +11,31 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe OutfitsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  xit '.items_div_class(outfit) provides div class for items checklist' do
+
+  end
+
+  xit '.outfit_error_message(outfit) provides error message if relevant' do
+
+  end
+
+  xit '.outfit_error_message(outfit) does not provide error message if not relevant' do
+
+  end
+
+  xit '.delete_link(outfit) provides delete link if relevant' do
+
+  end
+
+  xit '.delete_link(outfit) does not provide delete link if not relevant' do
+
+  end
+
+  xit '.outfit_item_error(item) provides error div if relevant' do
+
+  end
+
+  xit '.outfit_item_error(item) does not provide error div if not relevant' do
+
+  end
 end
