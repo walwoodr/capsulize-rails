@@ -90,23 +90,44 @@ RSpec.describe 'Outfit', type: :feature do
     end
 
     describe 'new outfit creation' do
-      before do
-        visit new_user_outfit_path(user)
-        fill_in "Outfit Name", with: "Evening at the Opera"
-        check "outfit_clothing_item_ids_16"
-        check "outfit_clothing_item_ids_4"
-        click_button "Create Outfit"
+      describe 'without a new item' do
+        before do
+          visit new_user_outfit_path(user)
+          fill_in "Outfit Name", with: "Evening at the Opera"
+          check "outfit_clothing_item_ids_16"
+          check "outfit_clothing_item_ids_4"
+          click_button "Create Outfit"
+        end
+
+        let (:outfit_2) { user.outfits.find_by(name: "Evening at the Opera")}
+
+        it 'creates a new outfit belonging to the user' do
+          expect(outfit_2).not_to be_nil
+          expect(user.outfits.last).to eq(outfit_2)
+        end
+
+        it 'redirects to view the new outfit' do
+          expect(page).to have_text(outfit_2.name)
+        end
       end
 
-      let (:outfit_2) { user.outfits.find_by(name: "Evening at the Opera")}
+      describe 'create a new item with an outfit' do
+        before do
+          visit new_user_outfit_path(user)
+          fill_in "Outfit Name", with: "Day at the ranch"
+          check "outfit_clothing_item_ids_16"
+          check "outfit_clothing_item_ids_4"
+          fill_in "outfit_clothing_item_color", with: "blue"
+          fill_in "outfit_clothing_item_name", with: "bolero tie"
+          select "pants", from: "outfit[clothing_item][category_id]"
+          click_button "Create Outfit"
+        end
 
-      it 'creates a new outfit belonging to the user' do
-        expect(outfit_2).not_to be_nil
-        expect(user.outfits.last).to eq(outfit_2)
-      end
+        it 'adds a new item to the user\'s closet' do
+          bolero = user.clothing_items.find_by(name: "bolero tie")
 
-      it 'redirects to view the new outfit' do
-        expect(page).to have_text(outfit_2.name)
+          expect(bolero).to_not be_nil
+        end
       end
     end
 
