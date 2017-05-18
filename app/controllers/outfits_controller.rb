@@ -13,6 +13,10 @@ class OutfitsController < ApplicationController
   end
 
   def show
+    respond_to do |f|
+      f.html {render :show}
+      f.json {render json: [@outfit]}
+    end
   end
 
   def new
