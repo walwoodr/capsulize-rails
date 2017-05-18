@@ -4,6 +4,10 @@ function Category(){
 
 Category.prototype.buildFromDomLink = function(domLink) {
   this.id = domLink.data("id");
+  if (this.id > 1) {
+    this.previousId = parseInt(this.id)-1;
+  }
+  this.nextId = parseInt(this.id)+1;
   this.domLink = domLink;
 }
 
@@ -30,10 +34,11 @@ Category.prototype.createClothingItem = function(json) {
 
 Category.prototype.buildAndAddHTML = function() {
   var items = this.clothingItems;
-  var template = Handlebars.compile($("#items-template").html());
+  console.log(this.id);
+  var template = Handlebars.compile($("#category-template").html());
   var result = template(this);
   this.html = result;
-  $(this.domLink).parent().html(this.html);
+  $(".section").html(this.html);
 }
 
 

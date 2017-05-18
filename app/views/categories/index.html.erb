@@ -11,17 +11,29 @@
   </div>
 <% end %>
 
-<script id="items-template" type="text/x-handlebars-template">
-  <ul>
-    {{#each clothingItems}}
-      <li class="clothing-item">
-        {{attributesDisplay}} |
+<script id="category-template" type="text/x-handlebars-template">
+  <div class="row">
+    <div class="three columns">
+      {{#if previousId}}
+        <button type="button" id="previous" data-id="{{previousId}}">Previous</button>
+      {{else}}
+        <p></p>
+      {{/if}}
+    </div>
+    <div class="six columns">
+      <h2>{{name}}</h2>
+      <ul>
+        {{#each clothingItems}}
+          <li class="clothing-item">
+            {{attributesDisplay}} | <a rel="nofollow" data-method="post" href="/user_clothing_items.{{id}}">Add to my closet</a>
 
-        <form action="/user_clothing_items.{{id}}" method="post">
-          <button type="submit">Add to my closet</button>
-        </form>
-
-      </li>
-    {{/each}}
-  </ul>
+          </li>
+        {{/each}}
+      </ul>
+      <button id="all-categories">All Categories</button>
+    </div>
+    <div class="three columns">
+      <button type="button" id="next" data-id="{{nextId}}">Next</button>
+    </div>
+  </div>
 </script>
