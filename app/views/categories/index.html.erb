@@ -3,9 +3,9 @@
 <% @categories.in_groups_of(4, false).each do |set| %>
   <div class="row">
     <% set.each do |category| %>
-    <div class="category three columns">
+    <div class="category three columns" id=<%= "#{category.name}-div" %>>
       <h3><%= category.name %></h3>
-      <p><%= link_to "View #{category.name}", category_path(category) %></p>
+      <p><a href="#" class="category-link" data-id=<%= category.id %>><%= "View #{category.name}" %></a></p>
     </div>
     <% end %>
   </div>
