@@ -5,8 +5,23 @@
     <% set.each do |category| %>
     <div class="category three columns" id=<%= "#{category.name}-div" %>>
       <h3><%= category.name %></h3>
-      <p><a href="#" class="category-link" data-id=<%= category.id %>><%= "View #{category.name}" %></a></p>
+      <p class="category-content"><a class="category-link" data-id=<%= category.id %>><%= "View #{category.name}" %></a></p>
     </div>
     <% end %>
   </div>
 <% end %>
+
+<script id="items-template" type="text/x-handlebars-template">
+  <ul>
+    {{#each clothingItems}}
+      <li class="clothing-item">
+        {{attributesDisplay}} |
+
+        <form action="/user_clothing_items.{{id}}" method="post">
+          <button type="submit">Add to my closet</button>
+        </form>
+
+      </li>
+    {{/each}}
+  </ul>
+</script>
