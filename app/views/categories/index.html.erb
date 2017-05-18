@@ -30,10 +30,13 @@
           </li>
         {{/each}}
       </ul>
-      <button id="all-categories">All Categories</button>
     </div>
     <div class="three columns">
-      <button type="button" class="category-nav" id="next" data-id="{{nextId}}">Next</button>
+      {{#if nextId}}
+        <button type="button" class="category-nav" id="next" data-id="{{nextId}}">Next</button>
+      {{else}}
+        <p></p>
+      {{/if}}
     </div>
   </div>
 </script>

@@ -7,7 +7,9 @@ Category.prototype.buildFromDomLink = function(domLink) {
   if (this.id > 1) {
     this.previousId = parseInt(this.id)-1;
   }
-  this.nextId = parseInt(this.id)+1;
+  if (this.id < Category.maxID) {
+    this.nextId = parseInt(this.id)+1;
+  }
   this.domLink = domLink;
 }
 
@@ -34,7 +36,6 @@ Category.prototype.createClothingItem = function(json) {
 
 Category.prototype.buildAndAddHTML = function() {
   var items = this.clothingItems;
-  console.log(this.id);;
   var result = Category.showTemplate(this);
   this.html = result;
   $(".section").html(this.html);
@@ -43,4 +44,5 @@ Category.prototype.buildAndAddHTML = function() {
 $(function(){
   Category.showTemplateSource = $("#category-template").html();
   Category.showTemplate = Handlebars.compile(Category.showTemplateSource);
+  Category.maxID = $(".category").length;
 })
