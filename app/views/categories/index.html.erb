@@ -15,7 +15,7 @@
   <div class="row">
     <div class="three columns">
       {{#if previousId}}
-        <button type="button" id="previous" data-id="{{previousId}}">Previous</button>
+        <button type="button" class="category-nav" id="previous" data-id="{{previousId}}">Previous</button>
       {{else}}
         <p></p>
       {{/if}}
@@ -33,7 +33,7 @@
       <button id="all-categories">All Categories</button>
     </div>
     <div class="three columns">
-      <button type="button" id="next" data-id="{{nextId}}">Next</button>
+      <button type="button" class="category-nav" id="next" data-id="{{nextId}}">Next</button>
     </div>
   </div>
 </script>

@@ -11,20 +11,20 @@ Category.prototype.buildFromDomLink = function(domLink) {
   this.domLink = domLink;
 }
 
-Category.prototype.query = function() {
-  var category = this;
-  $.get(`/categories/${category.id}`, function(result){
-      category.buildFromJson(result);
-      category.buildAndAddHTML();
-    })
-}
-
 Category.prototype.buildFromJson = function(json) {
   var category = this;
   category.name = json["name"];
   json["clothing_items"].forEach(function(itemJson){
     category.createClothingItem(itemJson);
   });
+}
+
+Category.prototype.query = function() {
+  var category = this;
+  $.get(`/categories/${category.id}`, function(result){
+      category.buildFromJson(result);
+      category.buildAndAddHTML();
+    })
 }
 
 Category.prototype.createClothingItem = function(json) {
@@ -34,24 +34,13 @@ Category.prototype.createClothingItem = function(json) {
 
 Category.prototype.buildAndAddHTML = function() {
   var items = this.clothingItems;
-  console.log(this.id);
-  var template = Handlebars.compile($("#category-template").html());
-  var result = template(this);
+  console.log(this.id);;
+  var result = Category.showTemplate(this);
   this.html = result;
   $(".section").html(this.html);
 }
 
-
-function addListeners(){
-  $(document).on("click", "a.category-link", function(e){
-    e.preventDefault;
-    var categoryLink = this;
-    var category = new Category();
-    category.buildFromDomLink($(categoryLink));
-    category.query();
-  });
-}
-
 $(function(){
-  addListeners();
-});
+  Category.showTemplateSource = $("#category-template").html();
+  Category.showTemplate = Handlebars.compile(Category.showTemplateSource);
+})
