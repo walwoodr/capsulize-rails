@@ -1,3 +1,5 @@
 class ClothingItemSerializer < ActiveModel::Serializer
-  attributes :id
+  type :clothing_item
+  attributes :name, :color, :fanciness
+  belongs_to :category
 end
