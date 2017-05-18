@@ -59,6 +59,7 @@ group :development, :test do
   gem 'capybara'
   gem 'rails-controller-testing'
   gem 'pry'
+  gem 'poltergeist'
 end
 
 group :development do
