@@ -1,5 +1,5 @@
 function addListeners(){
-  $(document).on("click", "a.category-link", function(e){
+  $(document).on("click", "button.category-button", function(e){
     e.preventDefault;
     var categoryLink = this;
     var category = new Category();

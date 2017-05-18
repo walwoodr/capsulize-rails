@@ -5,7 +5,10 @@
     <% set.each do |category| %>
     <div class="category three columns" id=<%= "#{category.name}-div" %>>
       <h3><%= category.name %></h3>
-      <p class="category-content"><a class="category-link" data-id=<%= category.id %>><%= "View #{category.name}" %></a></p>
+      <p class="category-content">
+        <button type="button" class="category-button" data-id=<%= category.id %>>View <%= category.name %></button>
+        <!-- <a class="category-link" data-id=<%#= category.id %>><%#= "View #{category.name}" %></a> -->
+      </p>
     </div>
     <% end %>
   </div>
