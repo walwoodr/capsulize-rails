@@ -1,10 +1,11 @@
 require 'rails_helper'
 
 RSpec.feature "Category", type: :feature do
-  let (:user) { FactoryGirl.create(:user) }
 
   describe 'user logged in' do
     before do
+      User.destroy_all
+      user = FactoryGirl.create(:user)
       login_as(user)
     end
 
@@ -14,19 +15,34 @@ RSpec.feature "Category", type: :feature do
       end
       let(:f_cat) { Category.first }
       let(:l_cat) { Category.last }
+      let(:first_item) { f_cat.clothing_items.first }
 
       it 'displays a list of clothing category links' do
-        expect(page).to have_link("View #{f_cat.name}")
-        expect(page).to have_link("View #{l_cat.name}")
+        expect(page).to have_button("View #{f_cat.name}")
+        expect(page).to have_button("View #{l_cat.name}")
         expect(page).to have_css('div.category', count: Category.all.size)
+      end
+
+      it 'requires javascript to view clothing items' do
+        expect(page).to have_content f_cat.name
+        click_button "View #{f_cat.name}"
+        expect(page).not_to have_content first_item.name
+      end
+
+      it 'loads clothing items in category without page refresh', js: true do
+        expect(page).to have_content f_cat.name
+        click_button "View #{f_cat.name}"
+        expect(page).to have_content first_item.name
+        expect(page).to have_content first_item.color
       end
     end
 
-    describe 'show page' do
+    describe 'show page', js: true do
       let(:jackets) { Category.find_by(name: "jackets") }
       let(:first_item) { jackets.clothing_items.first }
       before do
-        visit category_path(jackets)
+        visit categories_path
+        click_button "View #{jackets.name}"
       end
 
       it 'displays a list of clothing items in the category' do
@@ -37,6 +53,17 @@ RSpec.feature "Category", type: :feature do
 
       it 'shows link to add a clothing item to their closet' do
         expect(page).to have_link("Add to my closet")
+        # TODO: all three of these should be more extensive
+      end
+
+      it 'allows user to view the next category' do
+        expect(page).to have_button("Next")
+        # TODO: all three of these should be more extensive
+      end
+
+      it 'allows user to view the previous category' do
+        expect(page).to have_button("Previous")
+        # TODO: all three of these should be more extensive
       end
 
       xit 'only shows link to add a clothing item to their closet if the user doesn\'t already have the itme in their closet' do
