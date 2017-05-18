@@ -2,6 +2,9 @@ function ClothingItem(json) {
   this.name = json["name"];
   this.color = json["color"];
   this.fanciness = json["fanciness"];
+  this.id = json["id"];
+  // Note: this attribute replicates the attributes_display helper in clothing_item_helper
+  this.attributesDisplay = `${this.name} | ${this.color} | ${this.wordFanciness()}`;
 }
 
 // Note: this function replicates the word_fanciness helper in clothing_item_helper
@@ -23,9 +26,4 @@ ClothingItem.prototype.wordFanciness = function(){
       return "fancy";
       break;
   };
-}
-
-// Note: this function replicates the attributes_display helper in clothing_item_helper
-ClothingItem.prototype.attributesDisplay = function(){
-  return `${this.name} | ${this.color} | ${this.wordFanciness()}`
 }
