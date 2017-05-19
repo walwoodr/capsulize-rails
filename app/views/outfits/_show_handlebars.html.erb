@@ -2,12 +2,13 @@
   <div class="row">
     <div class="three columns">
       {{#if previousId}}
-        <button type="button" class="category-nav" id="previous" data-id="{{previousId}}">Previous</button>
+        <button type="button" class="outfit-nav" id="previous" data-id="{{previousId}}" data-userId="{{userId}}">Previous</button>
       {{else}}
         <p></p>
       {{/if}}
     </div>
     <div class="six columns">
+      <h2>{{name}}</h2>
       <ul>
         {{#each clothingItems}}
           <li>{{attributesDisplay}}</li>
@@ -20,7 +21,7 @@
     </div>
     <div class="three columns">
       {{#if nextId}}
-        <button type="button" class="category-nav" id="next" data-id="{{nextId}}">Next</button>
+        <button type="button" class="outfit-nav" id="next" data-id="{{nextId}}" data-userId="{{userId}}">Next</button>
       {{else}}
         <p></p>
       {{/if}}

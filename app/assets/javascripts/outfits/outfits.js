@@ -1,6 +1,7 @@
 function Outfit(domLink) {
   this.clothingItems = [];
-  this.domLink = domLink;
+  this.id = $(domLink).data("id");
+  this.userId = $(domLink).data("userId");
 }
 
 Outfit.prototype.buildFromJson = function(json){
@@ -8,14 +9,16 @@ Outfit.prototype.buildFromJson = function(json){
   this.userId = json.user.id;
   this.name = json.name;
   this.addClothingItems(json);
-  this.priorId(json.user.outfit_ids);
-  this.nextId(json.user.outfit_ids);
+  this.outfitIds = json.user.outfit_ids;
+  this.priorId();
+  this.nextId();
 }
 
 Outfit.prototype.query = function(domLink){
   var outfit = this;
-  $.get(`${$(outfit.domLink).attr('href')}.json`, function(response){
+  $.get(`outfits/${outfit.id}.json`, function(response){
     outfit.buildFromJson(response);
+    outfit.buildAndAddHTML();
   })
 }
 
@@ -27,24 +30,30 @@ Outfit.prototype.addClothingItems = function(json){
   })
 }
 
-Outfit.prototype.priorId = function(outfitIds){
+Outfit.prototype.priorId = function(){
   var outfit = this;
-  outfitIds.forEach(function(id, index){
+  outfit.outfitIds.forEach(function(id, index){
     if(id === outfit.id) {
-    	var priorIndex = index-1;
-    	outfit.previousId = outfitIds[priorIndex]
+    	var previousIndex = index-1;
+    	outfit.previousId = outfit.outfitIds[previousIndex]
     }
   });
 }
 
-Outfit.prototype.nextId = function(outfitIds){
+Outfit.prototype.nextId = function(){
   var outfit = this;
-  outfitIds.forEach(function(id, index){
+  outfit.outfitIds.forEach(function(id, index){
     if(id === outfit.id) {
     	var nextIndex = index+1;
-    	outfit.nextId = outfitIds[nextIndex]
+    	outfit.nextId = outfit.outfitIds[nextIndex]
     }
   });
+}
+
+Outfit.prototype.buildAndAddHTML = function(){
+    var result = Outfit.showTemplate(this);
+    this.html = result;
+    $(".section").html(this.html);
 }
 
 $(function(){

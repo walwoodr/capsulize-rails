@@ -1,7 +1,7 @@
 <div class="four columns">
   <div class="outfit">
 
-    <%= link_to "Details", user_outfit_path(outfit.user, outfit), class: "details-outfit" %>
+    <a href="#" data-id=<%= outfit.id %> data-userId=<%= outfit.user.id %> class="details-outfit">Details</a>
       <h5><%= outfit.name %></h5>
 
       <ul class="outfit-items">
