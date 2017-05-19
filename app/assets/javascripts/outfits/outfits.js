@@ -1,33 +1,41 @@
-function Outfit(attrs) {
-  this.id = attrs.id;
-  this.userId = attrs.user_id;
-  this.name = attrs.name;
+function Outfit(json) {
+  this.id = json.id;
+  this.userId = attrs.user.id;
+  this.name = json.name;
   this.clothingItems = [];
-  this.priorId();
-  this.nextId();
-  this.clothingItems(json);
+  this.addClothingItems(json);
+  this.priorId(json.user.outfit_ids);
+  this.nextId(json.user.outfit_ids);
 }
 
-Outfit.prototype.clothingItems = function(json){
-  // ???
+Outfit.prototype.addClothingItems = function(json){
+  var outfit = this;
+  json["clothing_items"].forEach(function(itemJson){
+    var clothingItem = new ClothingItem(itemJson);
+    outfit.clothingItems.push(clothingItem)
+  })
 }
 
-Outfit.prototype.priorId = function(){
-  // do I need to create a user object in memory?
-  // perhaps I can make a db call that only grabs this id and the one before and after it? I bet I can do that...
-
-  // this.previousId -- this is going to be tricky b/c the prior outfit is not necessarily the prior id -- it's the prior by user. :-\
+Outfit.prototype.priorId = function(outfitIds){
+  this.previousId = outfitIds.forEach(function(id, index){
+                      if(id === 23) {
+                      	var priorIndex = index-1;
+                      	return outfitIds[priorIndex]
+                      }
+                    });
 }
 
-Outfit.prototype.nextId = function(){
-  // do I need to create a user object in memory?
-  // perhaps I can make a db call that only grabs this id and the one before and after it? I bet I can do that...
-
-  // this.nextId -- this is going to be tricky b/c the next outfit is not necessarily the next id -- it's the next by user. :-\
+Outfit.prototype.nextId = function(outfitIds){
+  this.nextId = outfitIds.forEach(function(id, index){
+                  if(id === 23) {
+                  	var nextIndex = index-1;
+                  	return outfitIds[nextIndex]
+                  }
+                });
 }
 
 $(function(){
   Outfit.showTemplateSource = $("#outfit-template").html();
   Outfit.showTemplate = Handlebars.compile(Outfit.showTemplateSource);
-  // Outfit.maxID = //Something about the user's # of outfits... 
+  // Outfit.maxID = //Something about the user's # of outfits...
 })
