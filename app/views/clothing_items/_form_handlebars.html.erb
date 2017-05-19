@@ -1,0 +1,32 @@
+<script id="item-form-template" type="text/x-handlebars-template">
+  <div class="section">
+    <h3>New Clothing Item</h3>
+      <div class="clothing-item-form">
+
+        <form class="new_clothing_item" id="new_clothing_item" action="/clothing_items" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓">
+
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+          <label for="clothing_item_color">Color</label>
+          <input type="text" name="clothing_item[color]" id="clothing_item_color">
+
+          <label for="clothing_item_name">Name</label>
+          <input type="text" name="clothing_item[name]" id="clothing_item_name">
+
+          <label for="clothing_item_category">Category</label>
+          <select name="clothing_item[category_id]" id="clothing_item_category_id">
+            <option value=""></option>
+            {{#each categories}}
+            <option value="{{id}}">{{name}}</option>
+            {{/each}}
+          </select>
+
+          <label for="clothing_item_fanciness">Fanciness</label> <span class="infotext">1-5</span><br>
+          <input type="text" value="3" name="clothing_item[fanciness]" id="clothing_item_fanciness"><br>
+
+          <input type="submit" name="commit" value="Create Clothing item" data-disable-with="Create Clothing item">
+
+        </form>
+      </div>
+  </div>
+</script>

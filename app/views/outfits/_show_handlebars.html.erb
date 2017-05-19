@@ -15,9 +15,11 @@
         {{/each}}
       </ul>
 
-      <a href="/users/{{userId}}/outfits/{{id}}/edit" class="edit-outfit button">Edit Outfit</a>
+      <div class="outfit-buttons">
+        <a href="/users/{{userId}}/outfits/{{id}}/edit" class="edit-outfit button">Edit Outfit</a>
 
-      <button type="button" name="button" class="add-item">Add Clothing Item</button>
+        <button type="button" name="button" class="add-item">Add Clothing Item</button>
+      </div>
     </div>
     <div class="three columns">
       {{#if nextId}}
