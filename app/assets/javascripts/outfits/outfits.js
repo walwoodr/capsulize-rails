@@ -16,10 +16,7 @@ Outfit.prototype.buildFromJson = function(json){
 
 Outfit.prototype.query = function(domLink){
   var outfit = this;
-  $.get(`/users/${outfit.userId}/outfits/${outfit.id}.json`, function(response){
-    outfit.buildFromJson(response);
-    outfit.buildAndAddHTML();
-  })
+  return $.get(`/users/${outfit.userId}/outfits/${outfit.id}.json`)
 }
 
 Outfit.prototype.addClothingItems = function(json){

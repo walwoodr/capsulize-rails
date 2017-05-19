@@ -2,7 +2,10 @@ function addOutfitNavListeners(){
   $(document).on("click", ".outfit-nav", function(e){
     event.preventDefault();
     var outfit = new Outfit(this);
-    outfit.query();
+    outfit.query().done(function(response){
+      outfit.buildFromJson(response);
+      outfit.buildAndAddHTML();
+    });
   });
 }
 
