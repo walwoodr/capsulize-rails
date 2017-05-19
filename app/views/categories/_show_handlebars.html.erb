@@ -1,0 +1,29 @@
+<script id="category-template" type="text/x-handlebars-template">
+  <div class="row">
+    <div class="three columns">
+      {{#if previousId}}
+        <button type="button" class="category-nav" id="previous" data-id="{{previousId}}">Previous</button>
+      {{else}}
+        <p></p>
+      {{/if}}
+    </div>
+    <div class="six columns">
+      <h2>{{name}}</h2>
+      <ul>
+        {{#each clothingItems}}
+          <li class="clothing-item">
+            {{attributesDisplay}} | <a rel="nofollow" data-method="post" href="/user_clothing_items.{{id}}">Add to my closet</a>
+
+          </li>
+        {{/each}}
+      </ul>
+    </div>
+    <div class="three columns">
+      {{#if nextId}}
+        <button type="button" class="category-nav" id="next" data-id="{{nextId}}">Next</button>
+      {{else}}
+        <p></p>
+      {{/if}}
+    </div>
+  </div>
+</script>

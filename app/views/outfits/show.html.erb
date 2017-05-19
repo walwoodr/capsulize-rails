@@ -8,33 +8,3 @@
 
 <%= link_to "Edit outfit", edit_user_outfit_path(@outfit.user, @outfit), class: "edit-outfit button" %>
 <button type="button" name="button" class="add-item">Add Clothing Item</button>
-
-<script id="outfit-template" type="text/x-handlebars-template">
-  <div class="row">
-    <div class="three columns">
-      {{#if previousId}}
-        <button type="button" class="category-nav" id="previous" data-id="{{previousId}}">Previous</button>
-      {{else}}
-        <p></p>
-      {{/if}}
-    </div>
-    <div class="six columns">
-      <ul>
-        {{#each clothingItems}}
-          <li>{{attributesDisplay}}</li>
-        {{/each}}
-      </ul>
-
-      <a href="/users/{{userId}}/outfits/{{id}}/edit" class="edit-outfit button">Edit Outfit</a>
-
-      <button type="button" name="button" class="add-item">Add Clothing Item</button>
-    </div>
-    <div class="three columns">
-      {{#if nextId}}
-        <button type="button" class="category-nav" id="next" data-id="{{nextId}}">Next</button>
-      {{else}}
-        <p></p>
-      {{/if}}
-    </div>
-  </div>
-</script>
