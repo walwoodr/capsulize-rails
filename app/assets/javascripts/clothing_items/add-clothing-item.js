@@ -5,17 +5,18 @@ function ClothingItemForm(domLink){
 
 ClothingItemForm.prototype.getForm = function(){
   var clothingItem = this;
-  $.get(`/outfits/${clothingItem.outfitId}/clothing_items/new`, function(response){
-    clothingItem.html = response;
-    clothingItem.addToDom();
-  })
+  return $.get(`/outfits/${clothingItem.outfitId}/clothing_items/new`);
 }
 
-ClothingItemForm.prototype.addToDom = function(){
-  $(".outfit-buttons").html(this.html);
-  $(".outfit-buttons").addClass("new-item-outfit");
+ClothingItemForm.prototype.setHtml = function(data){
+  this.html = data;
+}
+
+ClothingItemForm.prototype.addToDom = function(data){
+  $(".outfit-options").html(this.html);
+  $(".outfit-options").addClass("new-item-outfit");
 }
 
 ClothingItemForm.prototype.display = function(){
-  $(".outfit-buttons").html("hi there")
+  $(".outfit-options").html("hi there")
 }

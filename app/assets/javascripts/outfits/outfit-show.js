@@ -8,9 +8,11 @@ function addOutfitNavListeners(){
 
 function addAddItemListener(){
   $(document).on("click", ".add-item", function(){
-    debugger;
     var form = new ClothingItemForm(this);
-    form.getForm();
+    form.getForm().done(function(data) {
+      form.setHtml(data);
+  		form.addToDom();
+  	});;
   })
 }
 
