@@ -3,7 +3,9 @@ class OutfitClothingItemsController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    render partial: 'clothing_items/form', layout: false
+    outfit = Outfit.find(params[:outfit_id])
+    @clothing_item = outfit.clothing_items.build
+    render layout: false
   end
 
   def create

@@ -9,9 +9,9 @@ Rails.application.routes.draw do
     resources :outfits
   end
   resources :user_clothing_items, only: [:create, :destroy]
-  resources :outfits, only: [:show] do
-    resources :clothing_items, only: [:new, :create]
-  end
+
+  get 'outfits/:outfit_id/clothing_items/new', to: 'outfit_clothing_items#new'
+  get 'outfits/:outfit_id/clothing_items', to: 'outfit_clothing_items#create'
   # post '/user_clothing_items/:item_id', to: 'user_clothing_items#create', as: 'user_clothing_items'
   # delete '/user_clothing_items/:item_id', to: 'user_clothing_items#delete', as: 'user_clothing_items'
 
