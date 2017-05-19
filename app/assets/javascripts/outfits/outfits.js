@@ -1,7 +1,7 @@
 function Outfit(domLink) {
   this.clothingItems = [];
   this.id = $(domLink).data("id");
-  this.userId = $(domLink).data("userId");
+  this.userId = $(domLink).data("userid");
 }
 
 Outfit.prototype.buildFromJson = function(json){
@@ -16,7 +16,7 @@ Outfit.prototype.buildFromJson = function(json){
 
 Outfit.prototype.query = function(domLink){
   var outfit = this;
-  $.get(`outfits/${outfit.id}.json`, function(response){
+  $.get(`/users/${outfit.userId}/outfits/${outfit.id}.json`, function(response){
     outfit.buildFromJson(response);
     outfit.buildAndAddHTML();
   })
