@@ -35,6 +35,7 @@ Category.prototype.createClothingItem = function(json) {
 }
 
 Category.prototype.buildAndAddHTML = function() {
+  var items = this.clothingItems;
   var result = Category.showTemplate(this);
   this.html = result;
   $(".section").html(this.html);
