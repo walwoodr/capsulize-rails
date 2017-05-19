@@ -24,6 +24,9 @@ ClothingItemForm.prototype.addCreateItemListener = function(){
     form.values = $(this).serialize();
     form.postForm().done(function(data){
       var clothingItem = new ClothingItem(data);
+      $("ul").append(clothingItem.attributesLi());
+      $(".outfit-options").html("");
+      $(".outfit-options").removeClass("new-item-outfit");
     })
   })
 }

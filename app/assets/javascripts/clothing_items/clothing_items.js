@@ -27,3 +27,7 @@ ClothingItem.prototype.wordFanciness = function(){
       break;
   };
 }
+
+ClothingItem.prototype.attributesLi = function(){
+  return `<li>${this.attributesDisplay}</li>`
+}
