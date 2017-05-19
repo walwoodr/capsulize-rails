@@ -1,2 +1,12 @@
-<h5>Add a new item to this outfit</h5>
-  <%= render partial: 'clothing_items/form', locals: {clothing_item: @clothing_item} %>
+<div class="clothing-item-form">
+  <h5>Add a new item to this outfit</h5>
+
+  <%= form_for @clothing_item, url: "/outfits/#{@outfit.id}/clothing_items" do |f| %>
+
+    <%= render partial: 'clothing_items/form_fields', locals: {clothing_item: @clothing_item, f: f} %><br>
+
+    <%= f.submit %>
+
+  <% end %>
+
+</div>

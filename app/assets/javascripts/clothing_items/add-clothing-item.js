@@ -24,12 +24,11 @@ ClothingItemForm.prototype.addCreateItemListener = function(){
     form.values = $(this).serialize();
     form.postForm().done(function(data){
       var clothingItem = new ClothingItem(data);
-      $("ul").append(`<li>${clothingItem.attributesDisplay}</li>`)
     })
   })
 }
 
 ClothingItemForm.prototype.postForm = function() {
   var form = this;
-  return $.post(`/outfits/${form.outfitId}/clothing_items`)
+  return $.post(`/outfits/${form.outfitId}/clothing_items`, form.values)
 }
