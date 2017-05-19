@@ -17,6 +17,19 @@ ClothingItemForm.prototype.addToDom = function(data){
   $(".outfit-options").addClass("new-item-outfit");
 }
 
-ClothingItemForm.prototype.display = function(){
-  $(".outfit-options").html("hi there")
+ClothingItemForm.prototype.addCreateItemListener = function(){
+  var form = this;
+  $("div.outfit-options form").on("submit", function(e){
+    e.preventDefault();
+    form.values = $(this).serialize();
+    form.postForm().done(function(data){
+      var clothingItem = new ClothingItem(data);
+      $("ul").append(`<li>${clothingItem.attributesDisplay}</li>`)
+    })
+  })
+}
+
+ClothingItemForm.prototype.postForm = function() {
+  var form = this;
+  return $.post(`/outfits/${form.outfitId}/clothing_items`)
 }

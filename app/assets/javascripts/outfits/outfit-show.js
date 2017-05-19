@@ -15,9 +15,12 @@ function addAddItemListener(){
     form.getForm().done(function(data) {
       form.setHtml(data);
   		form.addToDom();
+      form.addCreateItemListener();
   	});;
   })
 }
+
+
 
 $(function(){
   addOutfitNavListeners();
