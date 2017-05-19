@@ -1,11 +1,22 @@
-function Outfit(json) {
-  this.id = json.id;
-  this.userId = attrs.user.id;
-  this.name = json.name;
+function Outfit(domLink) {
   this.clothingItems = [];
+  this.domLink = domLink;
+}
+
+Outfit.prototype.buildFromJson = function(json){
+  this.id = json.id;
+  this.userId = json.user.id;
+  this.name = json.name;
   this.addClothingItems(json);
   this.priorId(json.user.outfit_ids);
   this.nextId(json.user.outfit_ids);
+}
+
+Outfit.prototype.query = function(domLink){
+  var outfit = this;
+  $.get(`${$(outfit.domLink).attr('href')}.json`, function(response){
+    outfit.buildFromJson(response);
+  })
 }
 
 Outfit.prototype.addClothingItems = function(json){
@@ -17,21 +28,23 @@ Outfit.prototype.addClothingItems = function(json){
 }
 
 Outfit.prototype.priorId = function(outfitIds){
-  this.previousId = outfitIds.forEach(function(id, index){
-                      if(id === 23) {
-                      	var priorIndex = index-1;
-                      	return outfitIds[priorIndex]
-                      }
-                    });
+  var outfit = this;
+  outfitIds.forEach(function(id, index){
+    if(id === outfit.id) {
+    	var priorIndex = index-1;
+    	outfit.previousId = outfitIds[priorIndex]
+    }
+  });
 }
 
 Outfit.prototype.nextId = function(outfitIds){
-  this.nextId = outfitIds.forEach(function(id, index){
-                  if(id === 23) {
-                  	var nextIndex = index-1;
-                  	return outfitIds[nextIndex]
-                  }
-                });
+  var outfit = this;
+  outfitIds.forEach(function(id, index){
+    if(id === outfit.id) {
+    	var nextIndex = index+1;
+    	outfit.nextId = outfitIds[nextIndex]
+    }
+  });
 }
 
 $(function(){

@@ -15,7 +15,7 @@ class OutfitsController < ApplicationController
   def show
     respond_to do |f|
       f.html {render :show}
-      f.json {render json: [@outfit]}
+      f.json {render json: @outfit}
     end
   end
 
