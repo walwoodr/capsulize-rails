@@ -23,10 +23,15 @@ Category.prototype.buildFromJson = function(json) {
 
 Category.prototype.query = function() {
   var category = this;
-  $.get(`/categories/${category.id}`, function(result){
-      category.buildFromJson(result);
-      category.buildAndAddHTML();
-    })
+  return $.get(`/categories/${category.id}`)
+}
+
+Category.prototype.queryAndAdd = function(){
+  var category = this;
+  category.query().done(function(result){
+    category.buildFromJson(result);
+    category.buildAndAddHTML();
+  });
 }
 
 Category.prototype.createClothingItem = function(json) {

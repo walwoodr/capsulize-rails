@@ -4,7 +4,7 @@ function addListeners(){
     var categoryLink = this;
     var category = new Category();
     category.buildFromDomLink($(categoryLink));
-    category.query();
+    category.queryAndAdd();
   });
 }
 
