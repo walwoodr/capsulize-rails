@@ -27,3 +27,8 @@ ClothingItem.prototype.wordFanciness = function(){
       break;
   };
 }
+
+$(function(){
+  ClothingItem.formTemplateSource = $("#item-form-template").html();
+  ClothingItem.formTemplate = Handlebars.compile(ClothingItem.formTemplateSource);
+}
