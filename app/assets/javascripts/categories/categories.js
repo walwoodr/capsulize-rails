@@ -49,5 +49,5 @@ Category.prototype.buildAndAddHTML = function() {
 $(function(){
   Category.showTemplateSource = $("#category-template").html();
   Category.showTemplate = Handlebars.compile(Category.showTemplateSource);
-  Category.maxID = $(".category").length;
+  Category.maxID = 10;
 })

@@ -12,15 +12,13 @@ function addOutfitNavListeners(){
 function addAddItemListener(){
   $(document).on("click", ".add-item", function(){
     var form = new ClothingItemForm(this);
-    form.getForm().done(function(data) {
+    form.getForm().success(function(data) {
       form.setHtml(data);
   		form.addToDom();
       form.addCreateItemListener();
-  	});;
+  	})
   })
 }
-
-
 
 $(function(){
   addOutfitNavListeners();

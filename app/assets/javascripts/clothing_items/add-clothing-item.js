@@ -24,10 +24,15 @@ ClothingItemForm.prototype.addCreateItemListener = function(){
     form.values = $(this).serialize();
     form.postForm().done(function(data){
       var clothingItem = new ClothingItem(data);
-      $("ul").append(clothingItem.attributesLi());
-      $(".outfit-options").html("");
-      $(".outfit-options").removeClass("new-item-outfit");
-    })
+      if (data.id !== null) {
+        $("ul").append(clothingItem.attributesLi());
+        $(".outfit-options").html("");
+        $(".outfit-options").removeClass("new-item-outfit");
+      } else {
+        $(".outfit-options").html(`<div class="alert-flash">Sorry, that clothing item is invalid.</div>`);
+        $(".outfit-options").removeClass("new-item-outfit");
+      }
+    });
   })
 }
 
