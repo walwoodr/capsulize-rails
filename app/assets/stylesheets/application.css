@@ -135,3 +135,8 @@ a.button:focus,
   border-color: #888;
   outline: 0;
 }
+
+.hidden {
+	visibility: hidden;
+  height: 0px;
+}

@@ -13,6 +13,7 @@ ClothingItemForm.prototype.setHtml = function(data){
 }
 
 ClothingItemForm.prototype.addToDom = function(data){
+  $(".outfit-buttons").addClass("hidden");
   $(".outfit-options").html(this.html);
   $(".outfit-options").addClass("new-item-outfit");
 }
@@ -22,15 +23,17 @@ ClothingItemForm.prototype.addCreateItemListener = function(){
   $("div.outfit-options form").on("submit", function(e){
     e.preventDefault();
     form.values = $(this).serialize();
-    form.postForm().done(function(data){
+    form.postForm().success(function(data){
       var clothingItem = new ClothingItem(data);
       if (data.id !== null) {
         $("ul").append(clothingItem.attributesLi());
         $(".outfit-options").html("");
         $(".outfit-options").removeClass("new-item-outfit");
+        $(".outfit-buttons").removeClass("hidden");
       } else {
         $(".outfit-options").html(`<div class="alert-flash">Sorry, that clothing item is invalid.</div>`);
         $(".outfit-options").removeClass("new-item-outfit");
+        $(".outfit-buttons").removeClass("hidden");
       }
     });
   })
